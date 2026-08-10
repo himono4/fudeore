@@ -1,0 +1,10 @@
+/* ウェブフォントを使用する場合はここに定義を追加して下さい */
+
+@font-face {
+    font-family: "KH-Dot-Hibiya-24";
+    src: url("../../data/others/KH-Dot-Hibiya-24.ttf") format("truetype");
+
+    font-weight: normal;
+    font-style: normal;
+}
+
