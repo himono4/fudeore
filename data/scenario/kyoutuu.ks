@@ -105,7 +105,25 @@
 カンナ「とにかく、今日から修介くんのこと管理してあげるから、よろしくね」[n]
 修介「はいはい」[n]
 適当な返事には、隠し切れない優しさが滲み出ていた。[n]
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=true]
+[bg storage="コマンド画面背景.jpg"]
+[chara_move name="shusuke" left=0]
+;レイヤ1を表示状態に
+[layopt layer="1" visible="true"]
+[image storage="../image/b.png" x=50 y=20 width=200 height=120 layer=1]
+[image storage="../image/b.png" x=800 y=30 width=400 height="200" layer="1" ]
+[l]
 
+
+[mask_off]
+
+
+[button graphic="お出かけ.png" hint="ストレス?　好感度?"  storage="command.ks" target="*date1" x=1000 y=250  width=192 height=120]
+[button graphic="甘やかす.png" hint="ストレス↓↓　好感度↑↑" storage="command.ks" target="*amayakasu1" x=800 y=400 width=192 height=120]
+[button graphic="話を聞く.png" hint="ストレス↓　好感度↑" storage="command.ks" target="*hanasi1" x=800 y=250 width=192 height=120]
+[button graphic="進捗チェック.png" hint="ストレス↑↑　好感度↓" storage="command.ks" target="*sintyoku1" x=1000 y=400 width=192 height=120]
+[s]
 ;コマンド選択画面（初日は各コマンドの説明あり）
 
 ;二日目
