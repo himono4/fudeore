@@ -10,7 +10,7 @@
 @showmenubutton
 
 ;メッセージウィンドウの設定
-[position layer="message0" left=150 top=475 width=1000 height=230 page=fore visible=true]
+[position layer="message0" left=0 top=480 width=1280 height=240 page=fore visible=true]
 
 ;文字が表示される領域を調整
 [position layer=message0 page=fore margint="65" marginl="40" marginr="70" marginb="60"]
@@ -31,6 +31,28 @@
 
 ;一日目～三日目まで
 *sintyoku1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;進捗チェックコマンド—一回目
 カンナ「修介くん、ちゃんと進捗は出てる？」[n]
 ;修介立ち絵
@@ -42,6 +64,49 @@
 カンナ「ある程度妥協すればいいのに」[n]
 修介「ダメなんだよ。小説は自分自身の鏡だから。妥協したらそのぶん、俺自身の価値も下がる気がする」[n]
 修介「はぁ……こんなことばっか考えてるから、完成しないんだよな」[n]
+[iscript]
+f.stress += 10
+f.koukando -= 5
+f.day += 1
+f.sintyokucheck += 1
+[endscript]
+
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[endif]
+[ptext layer=2 text="-5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+10" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=500]
+
+[jump storage="kyoutuu.ks" target="*day2" cond="f.day === 2"]
+[jump storage="kyoutuu.ks" target="*day3" cond="f.day === 3"]
+[jump storage="kyoutuu.ks" target="*day4" cond="f.day === 4"]
+
 ;ストレス＋１０、好感度－５
 
 ;進捗チェックコマンド2回目
@@ -68,11 +133,36 @@
 ;ストレス＋１０、好感度－５
 
 *date1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;デートコマンド—一回目
 カンナ「気分転換に散歩でも行こうよ」[n]
 修介「はあ……外に出るの、怖いんだけどな」[n]
 カンナ「そんなこと言わず、ほら」[n]
 修介「あ、ちょっと！」[n]
+[mask effect="fadeIn" time=1000]
+[bg storage="公園.png" time=100]
+[mask_off]
 ;背景：公園
 修介「のんきなもんだな、公園なんて……」[n]
 
@@ -142,6 +232,28 @@
 ;ストレス－５、好感度＋５
 
 *hanasi1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;話を聞くコマンド—一回目
 カンナ「何かお話ししようよ」[n]
 ;修介立ち絵
@@ -185,6 +297,28 @@
 ;ストレス－５、好感度＋５
 
 *amayakasu1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;甘やかすコマンド一回目
 カンナ「修介くんはいつも頑張ってて、えらいね？」[n]
 ;修介立ち絵
