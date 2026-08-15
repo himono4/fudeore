@@ -201,7 +201,7 @@
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [chara_hide name=shusuke time=10]
-[bg storage="修介の部屋.png" time=10]
+[bg storage="CG_パソコン.png" time=10]
 [mask_off]
 小説を書いている修介くんはいつも、苦しそうな顔をしている。[n]
 自分の中にある昏い気持ちと戦って、その中にある綺麗なものを必死で探し当てようとしているんだと思う。[n]
@@ -217,22 +217,59 @@
 ;修介通常
 修介「何？　今日も俺の邪魔しにきたの？」[n]
 
+[glink text="邪魔とは失礼な。サポートだよサポート" color="btn_07_black" width=500 x=400 y=100 target="*day2_select1"]
+[glink text="ごめん、邪魔だよね" color="btn_07_black" width=500 x=400 y=200 target="*day2_select2"]
+[glink text="そんな言い方なくない？" color="btn_07_black" width=500 x=400 y=300 target="*day2_select3"]
+[s]
 ;「邪魔とは失礼な。[n]サポートだよ、サポート」[n]
 ;「ごめん、邪魔だよね……」[n]
 ;「そんな言い方なくない？」[n]
 
+*day2_select1
 ;「邪魔とは～」[n]を選んだ場合
 修介「はいはい。サポートね。ま、放っておかれるよりかはいいのか」[n]
 ;ストレス-5
+[iscript]
+f.stress -= 5
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 
+[mask_off]
+[jump target="*day2_common"]
+*day2_select2
 ;「ごめん～」[n]を選んだ場合
 修介「謝んないでよ。……カンナちゃんは、何も悪くないんだからさ」[n]
 ;ストレス＋５
 
+*day2_select3
 ;「そんな言い方なくない？」[n]を選んだ場合
 修介「悪かったな。こんな言い方しかできない人間なんだよ、俺は」[n]
 ;ストレス±０
 
+*day2_common
 ;共通
 修介「まあ、いいよ。どうせ今ちょっと詰まってたところだし」[n]
 修介「君の好きなようにしていいよ、俺のこと」[n]
@@ -277,30 +314,70 @@
 *day2_date
 修介くんを外に連れ出します　（ストレス? 好感度?）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*date2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい"  target="*day2_date2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
+
+*day2_date2
+[jump storage="command.ks" target="*date1" cond="f.date === 0"]
+[jump storage="command.ks" target="*date2" cond="f.date === 1"]
 
 *day2_amayakasu
 修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*amayakasu2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_amayakasu2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
+
+*day2_amayakasu2
+[jump storage="command.ks" target="*amayakasu1" cond="f.amayakasu === 0"]
+[jump storage="command.ks" target="*amayakasu2" cond="f.amayakasu === 1"]
 
 *day2_hanasi
 修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*hanasi2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_hanasi2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
+
+*day2_hanasi2
+[jump storage="command.ks" target="*hanasi1" cond="f.hanasi === 0"]
+[jump storage="command.ks" target="*hanasi2" cond="f.hanasi === 1"]
 
 *day2_sintyoku
 進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*sintyoku2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_sintyoku2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
+
+*day2_sintyoku2
+[jump storage="command.ks" target="*sintyoku1" cond="f.sintyokucheck === 0"]
+[jump storage="command.ks" target="*sintyoku2" cond="f.sintyokucheck === 1"]
+
+*day3
+[mask effect="fadeIn" ]
+[freeimage layer=1]
+[freeimage layer=2]
+
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[chara_hide name=shusuke time=10]
+[bg storage="修介の部屋.png" time=10]
+[mask_off]
 ;三日目
 ;廊下
 今日も修介くんにご飯を運ぶ。[n]
@@ -365,7 +442,89 @@
 そうしたら、修介くんは私の方を向いてくれるから。[n]
 
 ;コマンド選択画面
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
+[bg storage="コマンド画面背景.jpg"]
+[chara_move name="shusuke" left=0]
+;レイヤ1を表示状態に
+[position layer="message0" frame="frame_command.png" left=0 top=560 width=1280 height=160 page=fore visible=true]
+[layopt layer="1" visible="true"]
+[image storage="../image/b.png" x=800 y=30 width=400 height="200" layer="1" ]
+[l]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=950 y=70 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=70 width="&f.sintyoku*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=120 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=120 width="&f.koukando*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=170 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=170 width="&f.stress*1.4" height=20 ]
 
+
+[ptext layer=2 text="進捗" y=70 x=860 size=21 ]
+[ptext layer=2 text="好感度" y=120 x=850 size=21]
+[ptext layer=2 text="ストレス" y=170 x=840 size=21]
+[ptext layer=2 text="&f.sintyoku" y=70 x=1120 size=23]
+[ptext layer=2 text="&f.koukando" y=120 x=1120 size=23]
+[ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
+[ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
+[mask_off]
+[playbgm storage="夜の病室エレクトロ.mp3"]
+*day3_command
+
+[button graphic="お出かけ.png"  target="*day3_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
+[button graphic="甘やかす.png"  target="*day3_amayakasu" x=800 y=400 width=192 height=120 enterimg="甘やかす2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="甘やかす.png" ]
+[button graphic="話を聞く.png"  target="*day3_hanasi" x=800 y=250 width=192 height=120 enterimg="話を聞く2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="話を聞く.png" ]
+[button graphic="進捗チェック.png"   target="*day3_sintyoku" x=1000 y=400 width=192 height=120 enterimg="進捗チェック2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="進捗チェック.png" ]
+[s]
+
+*day3_date
+修介くんを外に連れ出します　（ストレス? 好感度?）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい"  target="*day3_date2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
+[s]
+
+*day3_date2
+[jump storage="command.ks" target="*date1" cond="f.date === 0"]
+[jump storage="command.ks" target="*date2" cond="f.date === 1"]
+[jump storage="command.ks" target="*date3" cond="f.date === 2"]
+
+*day3_amayakasu
+修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_amayakasu2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
+[s]
+
+*day3_amayakasu2
+[jump storage="command.ks" target="*amayakasu1" cond="f.amayakasu === 0"]
+[jump storage="command.ks" target="*amayakasu2" cond="f.amayakasu === 1"]
+[jump storage="command.ks" target="*amayakasu3" cond="f.amayakasu === 2"]
+
+*day3_hanasi
+修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_hanasi2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
+[s]
+
+*day3_hanasi2
+[jump storage="command.ks" target="*hanasi1" cond="f.hanasi === 0"]
+[jump storage="command.ks" target="*hanasi2" cond="f.hanasi === 1"]
+[jump storage="command.ks" target="*hanasi3" cond="f.hanasi === 2"]
+*day3_sintyoku
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_sintyoku2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
+[s]
+
+*day3_sintyoku2
+[jump storage="command.ks" target="*sintyoku1" cond="f.sintyokucheck === 0"]
+[jump storage="command.ks" target="*sintyoku2" cond="f.sintyokucheck === 1"]
+[jump storage="command.ks" target="*sintyoku3" cond="f.sintyokucheck === 2"]
+
+*day4
 ;四日目
 多分、どうせ声を掛けても気づかないだろう。[n]
 そう思って修介くんの部屋のドアを開ける。[n]
