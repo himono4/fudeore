@@ -28,6 +28,17 @@
 [deffont shadow="#000000"]
 [resetfont]
 ;このゲームで登場するキャラクターを宣言
+[chara_new  name="shusuke" storage="chara/shusuke/修介部屋着通常.png" jname="修介"  width = 720 height=1280]
+
+;キャラクターの表情登録
+[chara_face name="shusuke" face="tuuzyou" storage="chara/shusuke/修介部屋着通常.png"]
+[chara_face name="shusuke" face="tameiki" storage="../image/shusuke/部屋着ため息.png"]
+[chara_face name="shusuke" face="odoroki" storage="../image/shusuke/部屋着驚き.png"]
+[chara_face name="shusuke" face="urei" storage="../image/shusuke/部屋着憂い.png"]
+[chara_face name="shusuke" face="egao" storage="../image/shusuke/部屋着笑顔.png"]
+[chara_face name="shusuke" face="zityouemi" storage="../image/shusuke/部屋着自嘲笑み.png"]
+[chara_face name="shusuke" face="mesorasi" storage="../image/shusuke/部屋着目逸らし.png"]
+[chara_face name="shusuke" face="josou" storage="../image/shusuke/修介女装立ち絵.png"]
 
 ;一日目～三日目まで
 *sintyoku1
@@ -56,13 +67,17 @@
 ;進捗チェックコマンド—一回目
 カンナ「修介くん、ちゃんと進捗は出てる？」[n]
 ;修介立ち絵
+[chara_mod name="shusuke" face="mesorasi"]
 修介「なに？　編集者気取り？」[n]
 カンナ「酷い言い方だなぁ。ちょっと聞いただけなのに」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「それは……ごめん」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「でもさ、難しいんだよ、進捗が出てるかどうかなんて判断するの」[n]
 修介「書けたと思ってもしっくりこなくて何度も書き直してるから。進んだり、戻ったり、そんなことの繰り返し」[n]
 カンナ「ある程度妥協すればいいのに」[n]
 修介「ダメなんだよ。小説は自分自身の鏡だから。妥協したらそのぶん、俺自身の価値も下がる気がする」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「はぁ……こんなことばっか考えてるから、完成しないんだよな」[n]
 [iscript]
 f.stress += 10
@@ -135,13 +150,58 @@ f.sintyoku += 10
 ;進捗チェックコマンド2回目
 カンナ「進捗どうですかー」[n]
 ;修介立ち絵
+[chara_mod name="shusuke" face="tameiki"]
 修介「あ～、そういうの聞くのほんとやめてほしい。しんどい」[n]
 カンナ「修介くんは小説書くときいつもしんどそうだよね」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「そうだね……いつも、小説書いてるともう一人の自分が責めてくるんだ」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「なんでお前はこんなに文章が下手なんだ、これだけ人生を捧げてきたのにどうしてつまらないものしか書けないんだって」[n]
 修介「それでも、小説を書くのを辞める方が多分、ずっと、苦しいんだよな」[n]
 修介「本当に、好きって呪いだよ」[n]
 ;ストレス＋10、好感度－５
+[iscript]
+f.stress += 10
+f.koukando -= 5
+f.day += 1
+f.sintyokucheck += 1
+[endscript]
+
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[endif]
+[ptext layer=2 text="-5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+10" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+[jump storage="kyoutuu.ks" target="*day2" cond="f.day === 2"]
+[jump storage="kyoutuu.ks" target="*day3" cond="f.day === 3"]
+[jump storage="kyoutuu.ks" target="*day4" cond="f.day === 4"]
 
 
 *sintyoku3
@@ -169,15 +229,60 @@ f.sintyoku += 10
 [mask_off]
 ;進捗チェックコマンド3回目
 カンナ「進捗どうですか」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「はぁ……毎度思うけど、なんで君は俺の小説の進捗なんて気にするの？」[n]
 カンナ「当然、ファンだからだよ」[n]
 修介「本当？なんかちょっと馬鹿にしてない？」[n]
 カンナ「してないよ。なんでそう思うの？」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「だって俺はただのワナビで、しかもニートで、デビューはおろかろくに選考も通らないような小説しか書かないんだよ？」[n]
 修介「そんなやつのファンだなんて、バカにしてるだろ、どう考えても」[n]
 カンナ「賞の結果が全てじゃないよ」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「でも、客観的な評価とか、数字とか、そういうものがないなら、全然意味ないし、胸なんて張れないんだよ……」[n]
 ;ストレス＋１０、好感度－５
+[iscript]
+f.stress += 10
+f.koukando -= 5
+f.day += 1
+f.sintyokucheck += 1
+[endscript]
+
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[endif]
+[ptext layer=2 text="-5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+10" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+[jump storage="kyoutuu.ks" target="*day2" cond="f.day === 2"]
+[jump storage="kyoutuu.ks" target="*day3" cond="f.day === 3"]
+[jump storage="kyoutuu.ks" target="*day4" cond="f.day === 4"]
 
 *date1
 [mask effect="fadeIn" time=100]
@@ -204,10 +309,13 @@ f.sintyoku += 10
 [mask_off]
 ;デートコマンド—一回目
 カンナ「気分転換に散歩でも行こうよ」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「はあ……外に出るの、怖いんだけどな」[n]
 カンナ「そんなこと言わず、ほら」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「あ、ちょっと！」[n]
 [mask effect="fadeIn" time=1000]
+[chara_mod name="shusuke" face="tameiki"]
 [bg storage="公園.png" time=100]
 [mask_off]
 ;背景：公園
@@ -269,7 +377,9 @@ f.sintyoku += 10
 
 *date1_select2
 ;何か小説の～を選んだ場合
+[chara_mod name="shusuke" face="odoroki"]
 修介「ああ。確かに、公園ってのどかな日常を描くのにぴったりな舞台かもしれないな」[n]
+[chara_mod name="shusuke" face="egao"]
 修介「ありがとう、ちょっといい刺激になったかも」[n]
 ;ストレス－５、好感度＋５
 [iscript]
@@ -368,7 +478,7 @@ f.sintyoku += 10
 [cm]
 [position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
 [chara_move name="shusuke" left=230]
-[bg storage="修介の部屋.png" time=0]
+[bg storage="喫茶店.png" time=0]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
 [layopt layer="2" visible="true"]
 [image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
@@ -389,13 +499,15 @@ f.sintyoku += 10
 ;背景：喫茶店
 修介「……で、今日はなんで喫茶店なんかに俺を連れ出したの？」[n]
 カンナ「美味しいコーヒーでも飲んだら頭がすっきりするかなって」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「……俺、コーヒー飲めないんだけど。苦いから」[n]
 カンナ「それじゃあ紅茶とかもいいんじゃない？　ああ、大丈夫、お金は私が払うから」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「じゃあ紅茶で。……はぁ、コーヒーは飲めないわ、年下の女の子に奢らせるわ、ほんと俺情けない……」[n]
 
-[glink text="しゃきっとせい！" color="btn_07_black" width=500 x=400 y=100 target="*date2_select1"]
-[glink text="情けなくても小説が書ければ充分でしょ" color="btn_07_black" width=500 x=400 y=200 target="*date2_select2"]
-[glink text="そういうところも修介くんの良いところだよ" color="btn_07_black" width=500 x=400 y=300 target="*date2_select3"]
+[glink text="しゃきっとせい！" color="btn_07_black" width=700 x=400 y=100 target="*date2_select1"]
+[glink text="情けなくても小説が書ければ充分でしょ" color="btn_07_black" width=700 x=400 y=200 target="*date2_select2"]
+[glink text="そういうところも修介くんの良いところだよ" color="btn_07_black" width=700 x=400 y=300 target="*date2_select3"]
 [s]
 ;「しゃきっとせい！」[n]
 ;「情けなくても小説が書ければ充分でしょ」[n]
@@ -403,6 +515,7 @@ f.sintyoku += 10
 
 *date2_select1
 ;「しゃきっとせい」[n]を選んだ場合
+[chara_mod name="shusuke" face="urei"]
 修介「わかってるって……このままの俺じゃダメだってさ」[n]
 ;ストレス＋５、好感度－５
 [iscript]
@@ -447,6 +560,7 @@ f.sintyoku += 10
 
 *date2_select2
 ;情けなくても～を選んだ場合
+[chara_mod name="shusuke" face="egao"]
 修介「ははっ……そんなこと言ってくれるのなんてカンナちゃんぐらいだよ」[n]
 ;ストレス－５、好感度＋５
 [iscript]
@@ -491,6 +605,7 @@ f.sintyoku += 10
 
 *date2_select3
 ;そういうところも～を選んだ場合
+[chara_mod name="shusuke" face="tameiki"]
 修介「なんか馬鹿にされてない？……被害妄想か、これは」[n]
 ;ストレス＋５、好感度±０
 [iscript]
@@ -540,7 +655,7 @@ f.sintyoku += 10
 [cm]
 [position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
 [chara_move name="shusuke" left=230]
-[bg storage="修介の部屋.png" time=0]
+[bg storage="道路.png" time=0]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
 [layopt layer="2" visible="true"]
 [image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
@@ -558,15 +673,18 @@ f.sintyoku += 10
 [mask_off]
 ;デート3回目
 ;道路
+[chara_mod name="shusuke" face="odoroki"]
 修介「おっと……」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「そっち側歩いてると危ないよ。こっち来な」[n]
 カンナ「修介くん、紳士的だね？」[n]
 修介「紳士的っていうか、当たり前だろ。俺が車道側歩くのなんて」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「どうせ社会のゴミにすぎない俺なんか、君の盾になるぐらいのことしかできないんだからさ」[n]
 
-[glink text="修介くんは社会のゴミなんかじゃないよ" color="btn_07_black" width=500 x=400 y=100 target="*date3_select1"]
-[glink text="一言多いなぁ" color="btn_07_black" width=500 x=400 y=200 target="*date3_select2"]
-[glink text="それじゃ、これからも私を守ってね？" color="btn_07_black" width=500 x=400 y=300 target="*date3_select3"]
+[glink text="修介くんは社会のゴミなんかじゃないよ" color="btn_07_black" width=700 x=400 y=100 target="*date3_select1"]
+[glink text="一言多いなぁ" color="btn_07_black" width=700 x=400 y=200 target="*date3_select2"]
+[glink text="それじゃ、これからも私を守ってね？" color="btn_07_black" width=700 x=400 y=300 target="*date3_select3"]
 [s]
 
 ;「修介くんは社会のゴミなんかじゃないよ……」[n]
@@ -575,6 +693,7 @@ f.sintyoku += 10
 
 *date3_select1
 ;修介くんは～を選んだ場合
+[chara_mod name="shusuke" face="urei"]
 修介「ううん、客観的に見て、絶対に俺は社会のゴミだよ。それは変わらない」[n]
 ;ストレス＋５、好感度－５
 [iscript]
@@ -619,6 +738,7 @@ f.sintyoku += 10
 
 *date3_select2
 ;一言多いなぁを選んだ場合
+[chara_mod name="shusuke" face="urei"]
 修介「……ごめんね。俺、もう自分を下げないとまともに喋れないんだ」[n]
 ;ストレス＋５、好感度±０
 [iscript]
@@ -663,6 +783,7 @@ f.sintyoku += 10
 
 *date3_select3
 ;それじゃ～を選んだ場合
+[chara_mod name="shusuke" face="zityouemi"]
 修介「仰せのままに。お姫様」[n]
 ;ストレス－５、好感度＋５
 [iscript]
@@ -731,13 +852,18 @@ f.sintyoku += 10
 ;話を聞くコマンド—一回目
 カンナ「何かお話ししようよ」[n]
 ;修介立ち絵
+[chara_mod name="shusuke" face="tameiki"]
 修介「話って……別に、話すことなんてないけど」[n]
 カンナ「じゃあ、今書いてる小説の内容教えてよ」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「えぇ……まだ書いてる途中だし、あんま言うのも恥ずかしいんだけどな……」[n]
 カンナ「……」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「……あー、わかった、話すから」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「高校生の、話だよ。高校生が部活に勉強に忙しい、ありきたりな青春モノ」[n]
 カンナ「へぇ、意外。もっと暗い話かと思った」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「なにげに酷いこと言うね、君は」[n]
 修介「小説の中でぐらい、青春したいんだよ、俺も。……いいからニヤニヤするのやめてってば」[n]
 ;ストレス－５、好感度＋５
@@ -808,16 +934,23 @@ f.sintyoku += 10
 ;話を聞く2回
 カンナ「修介くんは、なんで小説を書いてるの？」[n]
 ;修介立ち絵
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「君、前にも同じ質問してたよね。小学生の頃だったか」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……俺は、昔から変わらず、小説を書くっていうのは現実逃避の手段なんだ」[n]
 修介「でもさ、やっぱり、楽しいから書いてるんだと思う。究極的には」[n]
 修介「うまくいかなくて、何かが違うって、葛藤する時間もあるし、なんならその時間が大半を占めてるんだけどさ」[n]
+[chara_mod name="shusuke" face="egao"]
 修介「それでも、自分なりに納得できる表現とか、展開とか、そういうのがピタッとハマったら、すっごい気持ちいい。ドーパミンに溺れそうになる」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「その”良い“って思ったものすら、出来上がって、他人に受け入れられなかったら結局は病むんだけどさ」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「それでも、俺が俺の作品に納得できたその瞬間の高揚は確かなんだ」[n]
 修介「そりゃ、俺の小説で誰かを救えたらって思わないこともないけど、でも、根本にあるのは、快感が欲しいからって言う、極めて原始的な欲求にすぎない」[n]
+[chara_mod name="shusuke" face="zityouemi"]
 修介「……馬鹿みたいだろ？　こんなのに縋って、人生めちゃくちゃにして、周りの人に迷惑かけてるんだよ」[n]
 カンナ「……それでも私は、修介くんに小説書いてほしいよ」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……ありがとね。お世辞でも、そう言ってくれるだけで違うや」[n]
 ;ストレス－５、好感度＋５
 [iscript]
@@ -888,11 +1021,13 @@ f.sintyoku += 10
 修介「……本当は、小説じゃなくてもいいのかもな」[n]
 カンナ「どうしたの、いきなり」[n]
 修介「いや、色々考えちゃってさ。俺は今まで、自分には小説しかないって思ってたけど、本当のところ、別に小説じゃなくてもいいんじゃないかって」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「ただただ承認を得たいだけなんじゃないかって」[n]
 修介「小説を書くだけで楽しいって本気で思えるなら、ただの趣味で良いはずなんだよ」[n]
 修介「でも、俺のプライドが、有名になって、もっと多くの人から認められなきゃ意味がないって言ってるんだ」[n]
 修介「本当にそれだけなら、別に小説じゃなくて何か別の……例えば動画配信とかでもいいんじゃないかって」[n]
 カンナ「動画配信……まあ、それをやってみることで小説の幅も広がるかもしれないよね」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「簡単に言ってくれるなぁ……ま、本当に行き詰ったら候補としてやってみるのもアリかもね」[n]
 ;ストレス－５、好感度＋５
 [iscript]
@@ -962,10 +1097,15 @@ f.sintyoku += 10
 ;甘やかすコマンド一回目
 カンナ「修介くんはいつも頑張ってて、えらいね？」[n]
 ;修介立ち絵
+[chara_mod name="shusuke" face="mesorasi"]
 修介「何頭撫でてんの……やめてよ、良い大人を」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「いや、他人様の家に寄生してる身分で大人なんて言えないか」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「あー、こういうこと言うから駄目なんだ俺は……５個も歳離れてる女の子に気使われるなんて、バカみたいだ」[n]
+
 カンナ「気なんて使ってないよ。私がやりたいからこうしてるだけ」[n]
+[chara_mod name="zityouemi"]
 修介「……変な趣味してるねぇ、君も」[n]
 [iscript]
 f.stress -= 10
@@ -1037,13 +1177,17 @@ f.sintyoku += 10
 カンナ「ハーブティー淹れたんだけど、飲む？」[n]
 修介「まぁ、ハーブティーなら……」[n]
 カンナ「あ、あと、肩も凝ってるでしょ？　肩たたきでもしてあげようか？」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「なんか、至れり尽くせりだな……」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「俺も何か君のためにできることとかない？」[n]
 カンナ「あ、それなら夏休みの宿題やってほしい。まだ終わってないんだよね」[n]
+[chara_mod name="shusuke" face="zityouemi"]
 修介「宿題は自分でやらなきゃ力にならないぞ～……まあ、俺はろくでもない人間だから、宿題手伝うくらいならやるんだけどさ」[n]
 カンナ「やった」[n]
 修介「今回の小説が締め切りに間に合って、なおかつそのときに俺が覚えてたらね」[n]
 カンナ「なかなか難しそうだな……」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「君、ナチュラルに失礼だよね」[n]
 ;ストレス－１０、好感度＋１０
 [iscript]
@@ -1112,14 +1256,20 @@ f.sintyoku += 10
 [mask_off]
 ;甘やかすコマンド3回目
 カンナ「修介くん、ぎゅー」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「……は？」[n]
 カンナ「抱きしめてあげるよ、修介くんのこと」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「意味がわかんないし。成人した男が五歳も年下の女の子に抱きしめられるなんて情けない」[n]
 カンナ「いいから、いいから」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「え、ちょっと！」[n]
 ;抱きしめるＣＧ
+[chara_move width=1440 height=2560]
+[chara_mod name="shusuke" face="urei"]
 修介「……まったく、何がしたいんだよ、君は……」[n]
 カンナ「修介くん、泣いてる？」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「泣いてない！」[n]
 修介「ただ、びっくりしたんだよ。……誰かに抱きしめられるなんて、本当に久しぶりだからさ」[n]
 修介「ほんと、それだけ」[n]

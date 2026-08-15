@@ -32,6 +32,15 @@
 
 ;キャラクターの表情登録
 [chara_face name="shusuke" face="tuuzyou" storage="chara/shusuke/修介部屋着通常.png"]
+[chara_face name="shusuke" face="tameiki" storage="../image/shusuke/部屋着ため息.png"]
+[chara_face name="shusuke" face="odoroki" storage="../image/shusuke/部屋着驚き.png"]
+[chara_face name="shusuke" face="urei" storage="../image/shusuke/部屋着憂い.png"]
+[chara_face name="shusuke" face="egao" storage="../image/shusuke/部屋着笑顔.png"]
+[chara_face name="shusuke" face="zityouemi" storage="../image/shusuke/部屋着自嘲笑み.png"]
+[chara_face name="shusuke" face="mesorasi" storage="../image/shusuke/部屋着目逸らし.png"]
+[chara_face name="shusuke" face="josou" storage="../image/shusuke/修介女装立ち絵.png"]
+
+
 
 [button name="role_button" role="skip" graphic="button/skip.png" x=780 y=690]
 [button name="role_button" role="save" graphic="button/save.png" x=590 y=690]
@@ -65,12 +74,14 @@
 部屋の内部にある唯一の光源は、卓上に置かれたノートパソコンだけ。[n]
 私の大好きな人は、青白い光に照らされながら、四角い画面とにらめっこしていた。[n]
 カンナ「こんにちは、修介くん。ご飯持ってきたよ」[n]
+[bg storage="パソコン2.png" time=200]
 ;修介不機嫌
 修介「ノックぐらいしてよ、まったく……」[n]
 急にドアを開けられた修介くんは、廊下の電灯の眩しさに目を細めている。[n]
 カンナ「ごめんね、でも修介くん、いつも気づかないから」[n]
 修介「集中してると音、聞こえないんだよ……」[n]
 ;修介自嘲
+[bg storage="CG_パソコン.png" time=200]
 修介「って、ただのワナビのくせにプロ作家みたいなこと言っちゃった。恥ずかしい」[n]
 [bg storage="修介の部屋.png"]
 この人——修介くんは、同居している５歳年上のいとこだ。[n]
@@ -81,15 +92,20 @@
 [chara_show name="shusuke" top=20 left=230]
 修介「っていうかさ、カンナちゃん、今日から家族みんなで旅行じゃなかった？　なんでうちにいんの」[n]
 カンナ「無理言って家に残ったの。修介くんのことが心配で仕方ないからって」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「はぁ？　せっかく家族で思い出作れるチャンスだったのに、なんでそんなくだらないことで」[n]
 カンナ「私にとってはくだらなくないよ」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「よくわかんないヤツ……はぁ、せっかく人目を気にせず追い込みかけられると思ったんだけど」[n]
 カンナ「もうすぐだよね、新人賞の締め切り」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「そう。あと一週間。ちょうどカンナちゃんの家族が帰ってくる日。それまで家に一人になるから、誰にも邪魔されずに書けると思ったんだけど……」[n]
 カンナ「でも、私が居た方が家事する手間も省けるし、小説書ける時間ができるんじゃない？」[n]
 修介「だけど、こうやってちょっかいをかけられて無駄話をする時間は発生しない」[n]
 カンナ「刺激があった方が良いもの書けるかもでしょ」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「……口の減らないガキだね、君は」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「……とにかくさ、次の新人賞は、本当に大事なんだ。もう、これに落ちたら夢追いかけるのやめる」[n]
 カンナ「ええっ、やめちゃうの？」[n]
 修介「だから、落ちたらって言ってるだろ。受かんないみたいな言い方やめろ」[n]
@@ -97,8 +113,10 @@
 修介くんが小説家になるのを諦めるのは、困る。[n]
 夢にしがみついて、引きこもりになっても、無職になっても、どうしても諦めきれなくて、惨めに頑張り続けてる修介くんが、誰よりも美しいのに！[n]
 カンナ「そうだ！」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「え、何？　どうしたの？」[n]
 カンナ「私が修介くんの執筆のお手伝いをするよ」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「ええ……君に何ができるって言うの」[n]
 カンナ「それは……気晴らしにおしゃべりしたり、散歩に連れ出したり、甘やかしてあげたり、逆に催促したり？」[n]
 修介「なにそれ……ってか甘やかすって。俺のことなんだと思ってるの」[n]
@@ -106,13 +124,16 @@
 修介「はぁ……俺のこと引きこもりの無職だからって舐めてるよね？　まあ、全部俺が悪いからなんも言えないんだけどさ……」[n]
 カンナ「はいはい、バッドに入らない。とにかく、今日から私が編集者になって修介くんのメンタルコントロールしてあげるから」[n]
 修介「メンタルコントロールって、ずいぶんはっきり言うな……」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「まあ、いいよ。カンナちゃんの言う通り、どうせ俺は寂しがりのメンタル弱者だからね」[n]
 修介「適度に相手してくれたら、まぁ、嬉しくなくもないから」[n]
+[chara_mod name="shusuke" face="zityouemi"]
 ;修介自嘲
 修介「って恥ずかし。ヒキニートのくせにツンデレかよ」[n]
 修介くんはいつも、自分の一挙手一投足をせっついて、自分を責めさいなんでいる。[n]
 そういうところも好きだよ、なんて、絶対に言わない。[n]
 カンナ「とにかく、今日から修介くんのこと管理してあげるから、よろしくね」[n]
+[chara_mod name="shusuke" face="egao"]
 修介「はいはい」[n]
 適当な返事には、隠し切れない優しさが滲み出ていた。[n]
 
@@ -121,6 +142,7 @@
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
 [bg storage="コマンド画面背景.jpg"]
 [chara_move name="shusuke" left=0]
+[chara_mod name="shusuke" face="tuuzyou"]
 ;レイヤ1を表示状態に
 [position layer="message0" frame="frame_command.png" left=0 top=560 width=1280 height=160 page=fore visible=true]
 [layopt layer="1" visible="true"]
@@ -181,6 +203,7 @@
 [s]
 
 *day2
+[fadeoutbgm time=1000]
 [mask effect="fadeIn" ]
 [freeimage layer=1]
 [freeimage layer=2]
@@ -210,27 +233,67 @@
 顔が綺麗で、勉強ができて、礼儀正しくて、良い高校に行って、良い大学にも行って……。[n]
 きっとあの子はエリート街道まっしぐらね、なんて、親戚の人が言っていたのを思い出す。[n]
 そのころのことを考えると、今の修介くんはいかにも落ちぶれた、なんて表現できてしまうかもしれない。[n]
+[bg storage="修介の部屋.png" time=500]
 だけど私にとっては、今も昔も変わらない。[n]
 カンナ「修介くん、そろそろ休憩しよう？」[n]
+[chara_show name="shusuke" top=20 left=230 face="odoroki"]
 ;修介驚き
 修介「うわっ……びっくりした」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 ;修介通常
 修介「何？　今日も俺の邪魔しにきたの？」[n]
 
-[glink text="邪魔とは失礼な。サポートだよサポート" color="btn_07_black" width=500 x=400 y=100 target="*day2_select1"]
-[glink text="ごめん、邪魔だよね" color="btn_07_black" width=500 x=400 y=200 target="*day2_select2"]
-[glink text="そんな言い方なくない？" color="btn_07_black" width=500 x=400 y=300 target="*day2_select3"]
+[glink text="邪魔とは失礼な。サポートだよサポート" color="btn_07_black" width=700 x=400 y=100 target="*day2_select1"]
+[glink text="ごめん、邪魔だよね" color="btn_07_black" width=700 x=400 y=200 target="*day2_select2"]
+[glink text="そんな言い方なくない？" color="btn_07_black" width=700 x=400 y=300 target="*day2_select3"]
 [s]
+
 ;「邪魔とは失礼な。[n]サポートだよ、サポート」[n]
 ;「ごめん、邪魔だよね……」[n]
 ;「そんな言い方なくない？」[n]
 
 *day2_select1
 ;「邪魔とは～」[n]を選んだ場合
+[chara_mod name="shusuke" face="zityouemi"]
 修介「はいはい。サポートね。ま、放っておかれるよりかはいいのか」[n]
 ;ストレス-5
 [iscript]
 f.stress -= 5
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+
+[mask_off]
+[jump target="*day2_common"]
+*day2_select2
+;「ごめん～」[n]を選んだ場合
+[chara_mod name="shusuke" face="urei"]
+修介「謝んないでよ。……カンナちゃんは、何も悪くないんだからさ」[n]
+;ストレス＋５
+[iscript]
+f.stress += 5
 [endscript]
 [playse storage="データ表示1.mp3"]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
@@ -259,24 +322,55 @@ f.stress -= 5
 
 [mask_off]
 [jump target="*day2_common"]
-*day2_select2
-;「ごめん～」[n]を選んだ場合
-修介「謝んないでよ。……カンナちゃんは、何も悪くないんだからさ」[n]
-;ストレス＋５
+
 
 *day2_select3
 ;「そんな言い方なくない？」[n]を選んだ場合
+[chara_mod name="shusuke" face="mesorasi"]
 修介「悪かったな。こんな言い方しかできない人間なんだよ、俺は」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+
+[mask_off]
+[jump target="*day2_common"]
 
 *day2_common
 ;共通
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「まあ、いいよ。どうせ今ちょっと詰まってたところだし」[n]
 修介「君の好きなようにしていいよ、俺のこと」[n]
 そうして、今日も私は修介くんと関わる権利を得た。[n]
 
 ;コマンド選択画面
 [mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
 [bg storage="コマンド画面背景.jpg"]
 [chara_move name="shusuke" left=0]
@@ -376,7 +470,7 @@ f.stress -= 5
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [chara_hide name=shusuke time=10]
-[bg storage="修介の部屋.png" time=10]
+[bg storage="廊下.png" time=10]
 [mask_off]
 ;三日目
 ;廊下
@@ -389,21 +483,25 @@ f.stress -= 5
 カンナ「お昼ご飯持ってきたよー」[n]
 扉越しに声を掛けるけど、返事は返ってこない。[n]
 やっぱり聞こえてない、と思いながら、ドアを開ける。[n]
+[bg storage="CG_パソコン.png"]
 ;修介の部屋
 修介くんは相変わらず、パソコンと向き合っていた。[n]
 カンナ「……修介くん、朝ごはん残したでしょ」[n]
 修介「うん……」[n]
 カンナ「もしかして寝てないんじゃない？」[n]
 修介「うん……」[n]
+[bg storage="修介の部屋.png" time=500]
 間違いなく適当に返事している。[n]
 このままの調子だと昼食を食べてくれる気がしない。[n]
 カンナ「はい、昼ご飯だよ、食べて」[n]
 仕方がないから、皿に盛られたふりかけご飯を修介くんの口元に持っていく。[n]自分で食べてくれないなら、こうやって食べさせるしかない。[n]
-しかし、口元にスプーンを持ってきた途端……
+しかし、口元にスプーンを持ってきた途端……[n]
+[chara_show name="shusuke" face="tameiki" top=20 left=230]
 修介「……うぇっ」[n]
 修介くんはえずいてしまった。[n]
 カンナ「大丈夫？」[n]
 スプーンを皿に戻し、修介くんの背中をさする。[n]
+[chara_mod name="shusuke" face="urei"]
 修介「ごめん……ちょっと、今、食べ物の匂い、嗅ぐだけで、きついかも」[n]
 カンナ「そっか……」[n]
 
@@ -525,6 +623,28 @@ f.stress -= 5
 [jump storage="command.ks" target="*sintyoku3" cond="f.sintyokucheck === 2"]
 
 *day4
+[mask effect="fadeIn" ]
+[freeimage layer=1]
+[freeimage layer=2]
+
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[chara_hide name=shusuke time=10]
+[bg storage="廊下.png" time=10]
+[mask_off]
 ;四日目
 多分、どうせ声を掛けても気づかないだろう。[n]
 そう思って修介くんの部屋のドアを開ける。[n]
