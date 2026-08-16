@@ -419,7 +419,7 @@ f.stress += 0
 *day2_amayakasu
 修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_amayakasu2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" target="*day2_amayakasu2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
 
@@ -430,7 +430,7 @@ f.stress += 0
 *day2_hanasi
 修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_hanasi2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい"  target="*day2_hanasi2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
 
@@ -441,11 +441,12 @@ f.stress += 0
 *day2_sintyoku
 進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day2_sintyoku2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" target="*day2_sintyoku2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
 [s]
 
 *day2_sintyoku2
+
 [jump storage="command.ks" target="*sintyoku1" cond="f.sintyokucheck === 0"]
 [jump storage="command.ks" target="*sintyoku2" cond="f.sintyokucheck === 1"]
 
@@ -453,7 +454,7 @@ f.stress += 0
 [mask effect="fadeIn" ]
 [freeimage layer=1]
 [freeimage layer=2]
-
+[fadeoutbgm time=100]
 [layopt layer=1 visible=true]
 [layopt layer=2 visible=true]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
@@ -505,35 +506,138 @@ f.stress += 0
 修介「ごめん……ちょっと、今、食べ物の匂い、嗅ぐだけで、きついかも」[n]
 カンナ「そっか……」[n]
 
+[glink text="食べなきゃ元気になれないよ" color="btn_07_black" width=700 x=400 y=100 target="*day3_select1"]
+[glink text="食べられるときで大丈夫だよ" color="btn_07_black" width=700 x=400 y=200 target="*day3_select2"]
+[glink text="食べられそうなものあれば作るよ" color="btn_07_black" width=700 x=400 y=300 target="*day3_select3"]
+[s]
+
 ;「でも、食べなきゃ元気になれないよ」[n]
 ;「食べられるときに食べればいいよ」[n]
 ;「食べられそうなもの、あれば作るよ」[n]
 
+*day3_select1
 ;でも～を選んだ場合
-修介「食べられないって言ってるでしょ。[n]無理に食べさせようとしないでよ……」[n]
+修介「食べられないって言ってるでしょ。無理に食べさせようとしないでよ……」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 
+[mask_off]
+[jump target="*day3_common"]
+
+*day3_select2
 ;食べられるときに～を選んだ場合
 修介「ありがとう……あとで食べとくよ」[n]
 ;ストレス-5
+[iscript]
+f.stress -= 5
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 
+[mask_off]
+[jump target="*day3_common"]
+*day3_select3
 ;食べられそうなもの～を選んだ場合
 修介「いいよ、せっかく作ってくれたもの、作り直させるのも悪いし、気、使うし……」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 
+[mask_off]
+[jump target="*day3_common"]
+
+*day3_common
 ;共通
 修介「とにかく、今はご飯食べられないから……」[n]
 カンナ「徹夜したから体調がおかしくなってるんだよ」[n]
 カンナ「仮眠でもいいから、ちょっとは寝た方がいいんじゃない？　その方が作業効率も……」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「うるさい」[n]
-修介「……いや、ごめん。[n]わかってる、わかってるんだよ。[n]寝た方がいいもの書けるってことぐらい」[n]
+[chara_mod name="shusuke" face="urei"]
+修介「……いや、ごめん。わかってる、わかってるんだよ。寝た方がいいもの書けるってことぐらい」[n]
 修介「でも、駄目なんだ、寝ようとすると不安が止まらなくなって、頭がおかしくなりそうになる」[n]
 修介「だから、書き続けるしかないんだよ……」[n]
 修介「一度正気に戻ると、現実を見ると、なんにもできなくなっちゃうから」[n]
 修介「全部から目を背けて、自分の中の世界に浸りっぱなしの方が、かえって良いんだ」[n]
-修介「……はは、そんな理由で小説書くなって話だよな。[n]自己満で完結してるから、俺はいつまで経っても小説家になれないんだよな」[n]
+[chara_mod name="shusuke" face="tameiki"]
+修介「……はは、そんな理由で小説書くなって話だよな。自己満で完結してるから、俺はいつまで経っても小説家になれないんだよな」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……ごめん、ヘラッた」[n]
 カンナ「大丈夫、いつものことだし」[n]
+[chara_mod name="shusuke" face="egao"]
 修介「はは、酷いなぁ、カンナちゃんは」[n]
 軽口を叩いて、ちょっと空気を緩める。[n]
 修介「それで、今日は何しに来たの」[n]
@@ -541,6 +645,8 @@ f.stress += 0
 
 ;コマンド選択画面
 [mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
 [bg storage="コマンド画面背景.jpg"]
 [chara_move name="shusuke" left=0]
@@ -590,7 +696,7 @@ f.stress += 0
 *day3_amayakasu
 修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_amayakasu2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい"  target="*day3_amayakasu2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
 [s]
 
@@ -602,7 +708,7 @@ f.stress += 0
 *day3_hanasi
 修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_hanasi2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい"  target="*day3_hanasi2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
 [s]
 
@@ -613,7 +719,7 @@ f.stress += 0
 *day3_sintyoku
 進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
 コマンドを実行しますか？[n]
-[glink color="btn_07_black" text="はい" storage="command.ks" target="*day3_sintyoku2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="はい" target="*day3_sintyoku2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
 [s]
 
@@ -626,7 +732,7 @@ f.stress += 0
 [mask effect="fadeIn" ]
 [freeimage layer=1]
 [freeimage layer=2]
-
+[fadeoutbgm time=100]
 [layopt layer=1 visible=true]
 [layopt layer=2 visible=true]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
@@ -648,8 +754,11 @@ f.stress += 0
 ;四日目
 多分、どうせ声を掛けても気づかないだろう。[n]
 そう思って修介くんの部屋のドアを開ける。[n]
+[bg storage="修介の部屋.png"]
 ;背景：修介の部屋
+
 そして、すぐ異変に気付いた。[n]
+[bg storage="うずくまる.png"]
 ;修介がうずくまるCG
 修介くんが、部屋の隅でガタガタ震えている。[n]
 カンナ「ねえ、修介くん、どうしたの」[n]
@@ -712,23 +821,28 @@ f.stress += 0
 カンナ「修介くんには、できるだけ幸せになってほしいとは、ちゃんと思ってるけど」[n]
 カンナ「でも逆に、幸せになった修介くんは、私のことを必要としないよね」[n]
 修介「……っ」[n]
-修介くんは、不意を突かれたようにとても悲しそうな顔をする。[n]
-そんな顔するぐらいなら、あんな質問しなければよかったのに。[n]
 カンナ「私が唯一のファンだから、私に優しいんでしょ」[n]
 カンナ「だから私は、不幸で、孤独な修介くんが好き」[n]
 カンナ「成功して、みんなに愛されるようになった修介くんは、きっと私の方なんて見なくなっちゃうでしょ」[n]
 修介「……君は、俺を過大評価しすぎだよ」[n]
-カンナ「でも私、本気で思ってるんだよ。[n]修介くんはいつか絶対成功して、みんなに愛される小説家になるって」[n]
+カンナ「でも私、本気で思ってるんだよ。修介くんはいつか絶対成功して、みんなに愛される小説家になるって」[n]
 カンナ「けど、きっと私はそれだけじゃ満足しない」[n]
+[bg storage="修介の部屋.png"]
 綺麗なものが好き。[n]
 綺麗なものがボロボロに壊れてしまう姿は、もっと好き。[n]
 私は、ボロボロになった修介くんを独り占めしたいのだ。[n]
+[chara_show name="shusuke" top=20 left=230]
 修介「昔から、俺なんかに入れ込まない方がいいよって言ってきたけど、どうやら正解だったようだね」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……俺のせいで、君はこんなやつになっちゃった」[n]
 カンナ「こんな私は、嫌い？」[n]
-修介「いや。[n]利己的な人間の方が、かえって信用できる」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
+修介「いや。利己的な人間の方が、かえって信用できる」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……それに、君はやっぱり、俺の唯一のファンだから」[n]
 修介「作家はしょせん、読者の奴隷に過ぎないよ」[n]
 修介「だから、今日も俺のこと好きに扱ってよ」[n]
+[chara_mod name="shusuke" face="zityouemi"]
 修介「そんな俺が、君は好きなんだろ」[n]
 そう言って笑った修介くんの顔は、なんだか壊れてしまったみたいだった。[n]
+

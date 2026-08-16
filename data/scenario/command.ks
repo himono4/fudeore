@@ -92,12 +92,12 @@ f.sintyokucheck += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -173,12 +173,12 @@ f.sintyokucheck += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -254,12 +254,12 @@ f.sintyokucheck += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -344,12 +344,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -392,12 +392,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -436,12 +436,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -528,12 +528,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -573,12 +573,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -618,12 +618,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -706,12 +706,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -751,12 +751,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -796,12 +796,12 @@ f.date += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -877,12 +877,12 @@ f.hanasi += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -963,12 +963,12 @@ f.hanasi += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -1018,6 +1018,7 @@ f.sintyoku += 10
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [mask_off]
 ;話を聞くコマンド3回目
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「……本当は、小説じゃなくてもいいのかもな」[n]
 カンナ「どうしたの、いきなり」[n]
 修介「いや、色々考えちゃってさ。俺は今まで、自分には小説しかないって思ってたけど、本当のところ、別に小説じゃなくてもいいんじゃないかって」[n]
@@ -1040,12 +1041,12 @@ f.hanasi += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -1105,7 +1106,7 @@ f.sintyoku += 10
 修介「あー、こういうこと言うから駄目なんだ俺は……５個も歳離れてる女の子に気使われるなんて、バカみたいだ」[n]
 
 カンナ「気なんて使ってないよ。私がやりたいからこうしてるだけ」[n]
-[chara_mod name="zityouemi"]
+[chara_mod name="shusuke" face="zityouemi"]
 修介「……変な趣味してるねぇ、君も」[n]
 [iscript]
 f.stress -= 10
@@ -1117,12 +1118,12 @@ f.amayakasu += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -1200,12 +1201,12 @@ f.amayakasu += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -1265,7 +1266,7 @@ f.sintyoku += 10
 [chara_mod name="shusuke" face="odoroki"]
 修介「え、ちょっと！」[n]
 ;抱きしめるＣＧ
-[chara_move width=1440 height=2560]
+[chara_move name="shusuke" width=1440 height=2560 left=-200]
 [chara_mod name="shusuke" face="urei"]
 修介「……まったく、何がしたいんだよ、君は……」[n]
 カンナ「修介くん、泣いてる？」[n]
@@ -1284,12 +1285,12 @@ f.amayakasu += 1
 [image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
-[if exp="(f.koukando >= 80 || f.koukando <= 30) && (f.stress >= 80 || f.stress <= 30)"]
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 0
 [endscript]
 [ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
-[elsif exp="(f.koukando >= 80 || f.koukando <= 30) || (f.stress >= 80 || f.stress <= 30)"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40)"]
 [iscript]
 f.sintyoku += 5
 [endscript]
@@ -1317,6 +1318,7 @@ f.sintyoku += 10
 
 ;4日目以降
 ;進捗チェックコマンド一回目
+*sintyokuA_1
 カンナ「どう？　小説は完成させられそう？」[n]
 カンナ「修介くんなら、できるよね」[n]
 修介「……君は、他人にプレッシャーをかけるのがうまいね」[n]
