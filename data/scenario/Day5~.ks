@@ -12,7 +12,7 @@
 @showmenubutton
 
 ;メッセージウィンドウの設定
-[position layer="message0" left=150 top=475 width=1000 height=230 page=fore visible=true ]
+[position layer="message0" left=0 top=480 width=1280 height=240 page=fore visible=true]
 
 ;文字が表示される領域を調整
 [position layer=message0 page=fore margint="65" marginl="40" marginr="70" marginb="60"]
@@ -31,89 +31,323 @@
 [resetfont]
 
 ;このゲームで登場するキャラクターを宣言
-;yuko
+[chara_new  name="shusuke" storage="chara/shusuke/修介部屋着通常.png" jname="修介"  width = 720 height=1280]
+
+;キャラクターの表情登録
+[chara_face name="shusuke" face="tuuzyou" storage="chara/shusuke/修介部屋着通常.png"]
+[chara_face name="shusuke" face="tameiki" storage="../image/shusuke/部屋着ため息.png"]
+[chara_face name="shusuke" face="odoroki" storage="../image/shusuke/部屋着驚き.png"]
+[chara_face name="shusuke" face="urei" storage="../image/shusuke/部屋着憂い.png"]
+[chara_face name="shusuke" face="egao" storage="../image/shusuke/部屋着笑顔.png"]
+[chara_face name="shusuke" face="zityouemi" storage="../image/shusuke/部屋着自嘲笑み.png"]
+[chara_face name="shusuke" face="mesorasi" storage="../image/shusuke/部屋着目逸らし.png"]
+[chara_face name="shusuke" face="josou" storage="../image/shusuke/修介女装立ち絵.png"]
 
 
+*day5
 ;五日目
 ;ここからパラメーターによる会話分岐が発生
+[fadeoutbgm time=1000]
+[mask effect="fadeIn" ]
+[freeimage layer=1]
+[freeimage layer=2]
+
+[layopt layer=1 visible=true]
+[layopt layer=2 visible=true]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17 name="sintyoku"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[chara_hide name=shusuke time=10]
+[bg storage="黒.png" time=10]
+[mask_off]
+[jump  storage="end.ks" target="*stressend" cond="f.stress === 100"]
+[jump storage="end.ks" target="*kenjouend" cond="f.stress === 0"]
+[jump target="*day5_A" cond="f.sintyoku < 85"]
+[jump target="*day5_B" cond="f.sintyoku >= 85"]
+
+*day5_A
+[bg storage="修介の部屋.png" time=500]
 ;進捗８５％未満の場合
 修介くんにご飯を運ぶため、部屋の扉を開ける。
 今日の修介くんは珍しくパソコンとは向き合わず、ひたすらに部屋中を歩き回っていた。
 カンナ「一体どうしたの？」[n]
 ;修介立ち絵
+[chara_show name="shusuke" face="tameiki" top=20 left=230]
 修介「思いつかないんだよ、全然！　次の展開も、登場人物がどう喋るのかも！」[n]
 修介くんは苛立たしげに怒鳴る。
+[jump target="*day5_A_1" cond="f.stress < 50"]
+[jump target="*day5_A_2" cond="f.stress >= 50"]
+
+*day5_A_1
 ;ストレス５０未満の場合
 しかし、怒鳴ってから、ふと我に返ったかのようにその場に立ち尽くす。
+[chara_mod name="shusuke" face="urei"]
 修介「……本当は、もうやめた方がいいんだろうな」[n]
 修介「結局俺はこの程度で折れるほどの才能でしかないんだよ」[n]
 修介「こんな惨めな姿を君に見せるぐらいなら、いっそ潔く全部諦めて、普通の生活というやつをやろうとした方がいいんだよ、絶対」[n]
 修介「今の俺なら、なんとかできちゃう気がする」[n]
 修介「……君は、そんな俺は嫌だろうけど」[n]
 
+[glink text="働きながらでも小説は書けるよ" color="btn_07_black" width=700 x=400 y=100 target="*day5_A_1_select1"]
+[glink text="苦しいなら一旦辞めてみても良いと思う" color="btn_07_black" width=700 x=400 y=200 target="*day5_A_1_select2"]
+[glink text="……そうだね" color="btn_07_black" width=700 x=400 y=300 target="*day5_A_1_select3"]
+[s]
 ;「働きながらでも小説は書けるよ」[n]
 ;「苦しいなら、一旦やめてみてもいいと思う」[n]
 ;「……そうだね」[n]
 
+*day5_A_1_select1
 ;「働きながらでも～」[n]を選んだ場合
 修介「よくそう言うよね。……俺にそんな器用なことできるか、わかんないけど」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_A_1_select2
 ;苦しいなら～を選んだ場合
 修介「思ってもないくせに、よく言うよね、ホント」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
 
+*day5_A_1_select3
 ;……そうだねを選んだ場合
 修介「はは、やっぱりそうだよね。……俺もそんな俺、嫌だよ」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
 
+*day5_A_2
 ;ストレス５０以上の場合
 修介「もう締め切りまであと二日しかないのに……何か、何か書かなきゃ、なんでもいいから、なにか」[n]
 ぶつぶつと呟きながら修介くんは血が出そうになるくらい強く爪を噛み始める。
 カンナ「修介くん、駄目だよ、タイピングするんだから指は大事にしないと」[n]
+
+[jump target="*day5_A_koukando60under" cond="f.kouokando < 60"]
+[jump target="*day5_A_koukando60over" cond="f.koukando >= 60"]
+
+*day5_A_koukando60under
 ;好感度６０未満の場合
 修介「そんなのわかってるよ」[n]
 修介「でも痛みがないとダメなんだ。何も思いつけない、バカな俺を罰さないとやってけないんだ」[n]
 修介「君だって、どんなに耳あたりの良いことを言ってても、小説の書けない俺には用なんてないんでしょ？」[n]
 
+[glink text="小説書けない修介くんも好きだよ" color="btn_07_black" width=700 x=400 y=100 target="*day5_A_2_1_select1"]
+[glink text="どんな理由でも、自分を傷つけるのはよくないよ" color="btn_07_black" width=700 x=400 y=200 target="*day5_A_2_1_select2"]
+[glink text="そうだね、修介くんには小説を書いてほしい" color="btn_07_black" width=700 x=400 y=300 target="*day5_A_2_1_select3"]
+[s]
 ;「小説を書けない修介くんも好きだよ」[n]
 ;「どんな理由でも、自分を傷つけるのはよくないよ」[n]
 ;「そうだね、修介くんには小説を書いてほしい」[n]
 
+*day5_A_2_1_select1
 ;「小説を書けない～」[n]を選んだ場合
 修介「……それって多分、小説書けなくて苦しんでる俺が好きなんだよね。君にとっては」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_A_2_1_select2
 ;どんな理由でも～を選んだ場合
 修介「知ったようなこと言うなよ。今更いい子ぶったって、もう遅いんだしさ」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_A_2_1_select3
 ;そうだね～を選んだ場合
 修介「やっぱり、そうなんだろ。……俺も、そう思うよ。書くしかないんだ、結局」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_A_koukando60over
 ;好感度60以上の場合
 修介「……そうだね。本当に、そうだ」[n]
 修介「でも、このままじゃ君の期待に応えられない」[n]
-
+[glink text="小説書けない修介くんも好きだよ" color="btn_07_black" width=700 x=400 y=100 target="*day5_A_2_2_select1"]
+[glink text="どんな理由でも、自分を傷つけるのはよくないよ" color="btn_07_black" width=700 x=400 y=200 target="*day5_A_2_2_select2"]
+[glink text="そうだね、修介くんには小説を書いてほしい" color="btn_07_black" width=700 x=400 y=300 target="*day5_A_2_2_select3"]
+[s]
 ;選択肢は好感度６０未満と同じ
+
+*day5_A_2_2_select1
 
 ;小説を書けない～を選んだ場合
 修介「本当？　……多分、嘘だよな。……本当なら、縋りたくなるから、信じないでおく」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+
+*day5_A_2_2_select2
 ;どんな理由でも～を選んだ場合
 修介「気使ってるつもり？　そういうの、余計きついよ」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+
+*day5_A_2_2_select3
 ;そうだね～を選んだ場合
 修介「やっぱり、そうだよね。……どんな俺も肯定してくれるわけじゃ、ないもんな」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+
+*day5_B
 ;進捗８５％以上の場合
 修介くんにご飯を運ぶため、部屋の扉を開ける。
 修介くんは今日も変わらず、パソコンと必死に向かい合っている。
 カンナ「修介くん、ご飯持ってきたよ。食べよう？」[n]
+[jump target="*day5_B_1" cond="f.koukando >= 50"]
+[jump target="*day5_B_2" cond="f.koukando < 50"]
+
+*day5_B_1
 ;好感度５０以上の場合
 声を掛けると、修介くんは手を止める。
 修介「……うん、そうだね」[n]
@@ -124,48 +358,169 @@
 カンナ「ファンですから、腐っても」[n]
 そんなことを話しながら、トレーの上に乗っかった雑炊を二人で食べる。
 カンナ「修介くん、今日はちゃんと寝れた？」[n]
+[jump target="*day5_B_1_1" cond="f.stress >= 80"]
+[jump target="*day5_B_1_2" cond="f.stress < 80"]
+*day5_B_1_1
 ;ストレス８０以上の場合
 修介「あんまり」[n]
 修介「……ちゃんと書けてるはずなのに、何かが引っかかって。何度も書き直してたら、朝になってた」[n]
 修介「……こんなんじゃ、小説を職業になんてできないよな」[n]
 
+[glink text="それだけこだわりがあるってことだよ" color="btn_07_black" width=700 x=400 y=100 target="*day5_B_1_1_select1"]
+[glink text="先のことを考えても仕方ないよ" color="btn_07_black" width=700 x=400 y=200 target="*day5_B_1_1_select2"]
+[glink text="それでも書き続けるだけだよ" color="btn_07_black" width=700 x=400 y=300 target="*day5_B_1_1_select3"]
+[s]
 ;「それだけこだわりがあるってことだよ」[n]
 ;「先のことを考えても仕方ないよ」[n]
 ;「それでも書き続けるだけだよ」[n]
 
+*day5_B_1_1_select1
 ;それだけ～を選んだ場合
 修介「こだわりなんて高尚なもんじゃないよ。ただ、発想力が貧困で、まともなことが思いつけないだけだ」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_1_1_select2
 ;先のことを～を選んだ場合
 修介「そんなこと言ったって、考えなきゃいけないんだよ……ずっとこのままでいるわけには、いかないんだからさ」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day3_B_1_1_select3
 ;それでも～を選んだ場合
 修介「そうだよね。……うん、がんばらないと」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_1_2
 ;ストレス８０未満の場合
 修介「今日は寝れたよ、なんとか」[n]
 修介「なんだかんだ、ちゃんと寝た方が良いものは書きやすい……と思う」[n]
 修介「まあ、俺が良いものを書いたことなんてないんだけど」[n]
 
+[glink text="修介くんは良い作品を書いてるよ" color="btn_07_black" width=700 x=400 y=100 target="*day5_B_1_2_select1"]
+[glink text="良いものの定義なんて誰にもわからないよ" color="btn_07_black" width=700 x=400 y=200 target="*day5_B_1_2_select2"]
+[glink text="なんにせよ、ちゃんと寝れてるならよかった" color="btn_07_black" width=700 x=400 y=300 target="*day5_B_1_2_select3"]
+[s]
+
 ;「修介くんは良い作品を書いてるよ」[n]
 ;「良いものの定義なんて誰にもわからないよ」[n]
 ;「なんにせよ、ちゃんと寝れてるならよかった」[n]
-
+*day5_B_1_2_select1
 ;修介くんは～を選んだ場合
 修介「そういうのも、全部嘘に聞こえちゃうけどな……まあでも、そんな風に思ってもないと、雑炊なんて作ってくれないか」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_1_2_select2
 ;良いものの～を選んだ場合
 修介「俺だってずっとそう思ってここまでやってきたよ。……でももう、自分の感覚を信じられないんだ」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_1_2_select3
 ;なんにせよ～を選んだ場合
 修介「ついにスルーしてくるようになったな……まあ、ヘラる俺が悪いんだけどさ」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_2
 ;好感度５０未満の場合
 修介「……」[n]
 声を掛けても、修介くんは画面に釘付けになっている。
@@ -176,22 +531,170 @@
 必要最低限の返事しかしてくれない。
 まるで外界の情報をシャットアウトしているかのように。
 
+[glink text="せっかく作ったのに……" color="btn_07_black" width=700 x=400 y=100 target="*day5_B_2_select1"]
+[glink text="ちゃんと後で食べてね" color="btn_07_black" width=700 x=400 y=200 target="*day5_B_2_select2"]
+[glink text="せめてこっち向きなよ" color="btn_07_black" width=700 x=400 y=300 target="*day5_B_2_select3"]
+[s]
 ;「せっかく作ったのに……」[n]
 ;「ちゃんと後で食べてね」[n]
 ;「せめてこっち向きなよ」[n]
 
+*day5_B_2_select1
 ;せっかく～を選んだ場合
 修介「……ごめん。でも、今は食べられない」[n]
 ;ストレス±０
+[iscript]
+f.stress += 0
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+-0" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_2_select2
 ;ちゃんと～を選んだ場合
 修介「わかった。……迷惑かけるね」[n]
 ;ストレス－５
+[iscript]
+f.stress -= 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+*day5_B_2_select3
 ;せめて～を選んだ場合
 修介「……」[n]
 ;ストレス＋５
+[iscript]
+f.stress += 5
+[endscript]
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
 
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[anim name="stress" width="&f.stress" time=1000]
+[wait time=2000]
+[jump target="*day5_command_gamen"]
+
+
+*day5_command_gamen
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
+[bg storage="コマンド画面背景.jpg"]
+[chara_move name="shusuke" left=0]
+[chara_mod name="shusuke" face="tuuzyou"]
+;レイヤ1を表示状態に
+[position layer="message0" frame="frame_command.png" left=0 top=560 width=1280 height=160 page=fore visible=true]
+[layopt layer="1" visible="true"]
+[image storage="../image/b.png" x=800 y=30 width=400 height="200" layer="1" ]
+[l]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=950 y=70 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=70 width="&f.sintyoku*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=120 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=120 width="&f.koukando*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=170 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=170 width="&f.stress*1.4" height=20 ]
+
+
+[ptext layer=2 text="進捗" y=70 x=860 size=21 ]
+[ptext layer=2 text="好感度" y=120 x=850 size=21]
+[ptext layer=2 text="ストレス" y=170 x=840 size=21]
+[ptext layer=2 text="&f.sintyoku" y=70 x=1120 size=23]
+[ptext layer=2 text="&f.koukando" y=120 x=1120 size=23]
+[ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
+[ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
+[mask_off]
+[playbgm storage="夜の病室エレクトロ.mp3"]
+*day5_command
+
+[button graphic="お出かけ.png"  target="*day5_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
+[button graphic="甘やかす.png"  target="*day5_amayakasu" x=800 y=400 width=192 height=120 enterimg="甘やかす2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="甘やかす.png" ]
+[button graphic="話を聞く.png"  target="*day5_hanasi" x=800 y=250 width=192 height=120 enterimg="話を聞く2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="話を聞く.png" ]
+[button graphic="進捗チェック.png"   target="*day5_sintyoku" x=1000 y=400 width=192 height=120 enterimg="進捗チェック2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="進捗チェック.png" ]
+[s]
+
+*day5_date
+修介くんを外に連れ出します　（ストレス? 好感度?）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい"  target="*day5_date2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day5_command" width=300 x=50 y=400]
+[s]
+
+*day5_date2
+[jump storage="end.ks" target="*dateend" cond="f.date === 4"]
+[jump storage="command.ks" target="*dateA_1" cond="f.dateA === 0"]
+[jump storage="command.ks" target="*dateA_2" cond="f.dateA === 1"]
+
+*day5_amayakasu
+修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" target="*day5_amayakasu2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day5_command" width=300 x=50 y=400]
+[s]
+
+*day5_amayakasu2
+[jump storage="end.ks" target="*amayakasuend" cond="f.amayakasu === 4"]
+[jump storage="command.ks" target="*amayakasuA_1" cond="f.amayakasuA === 0"]
+[jump storage="command.ks" target="*amayakasuA_2" cond="f.amayakasuA === 1"]
+
+*day5_hanasi
+修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい"  target="*day5_hanasi2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day5_command" width=300 x=50 y=400]
+[s]
+
+*day5_hanasi2
+[jump storage="end.ks" target="*josouend" cond="f.hanasi === 4"]
+[jump storage="command.ks" target="*hanasiA_1" cond="f.hanasiA === 0"]
+[jump storage="command.ks" target="*hanasiA_2" cond="f.hanasiA === 1"]
+
+*day5_sintyoku
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" target="*day5_sintyoku2" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day5_command" width=300 x=50 y=400]
+[s]
+
+*day5_sintyoku2
+
+[jump storage="end.ks" target="*bouryokuend" cond="f.sintyokucheck === 4"]
+[jump storage="command.ks" target="*sintyokuA_1" cond="f.sintyokucheckA === 0"]
+[jump storage="command.ks" target="*sintyokuA_1" cond="f.sintyokucheckA === 1"]
+
+
+
+*day6
 ;六日目
 ;進捗９０％未満の場合
 いつも通り修介くんの部屋の扉を開ける。
@@ -356,3 +859,5 @@
 ;私は手懐けた～を選んだ場合
 修介「はは、そっか。……俺が勝手に君の期待通りに動いてるだけだもんなぁ」[n]
 ;ストレス＋５
+
+*day7

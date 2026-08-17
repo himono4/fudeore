@@ -58,6 +58,10 @@
 [eval exp="f.date=0"]
 [eval exp="f.amayakasu=0"]
 [eval exp="f.hanasi=0"]
+[eval exp="f.sintyokucheckA=0"]
+[eval exp="f.dateA=0"]
+[eval exp="f.amayakasuA = 0"]
+[eval exp="f.hanasiA = 0"]
 
 
 綺麗なものが好き。[n]
@@ -790,10 +794,15 @@ f.stress += 0
 修介「君、本当は苦しんでる俺が好きなんでしょ」[n]
 修介「幸せになった俺には用なんてなくて、もがきながら生きてる俺の支えになることが、何よりも楽しいんだろ」[n]
 
+
+[glink text="違うよ" color="btn_07_black" width=500 x=400 y=100 target="*end1"]
+[glink text="……そうだよ" color="btn_07_black" width=500 x=400 y=200 target="*day4_common"]
+[s]
 ;「違うよ」[n]
 ;「……そうだよ」[n]
 
 ;「違うよ」[n]を選んだ場合
+*end1
 修介「違くないよ」[n]
 修介「何年前から見てきてると思ってるの。[n]わかるんだよ、ただ憧れてただけの昔とは違うって」[n]
 カンナ「でも、幸せになってほしいのは、本当で」[n]
@@ -803,20 +812,34 @@ f.stress += 0
 修介「そんな日が来るなら、もうここで全てを終わりにした方がいい」[n]
 修介「……出て行ってくれないか、この部屋から」[n]
 カンナ「そんな……」[n]
+[bg storage="修介の部屋.png"]
 そして修介くんは立ち上がり、催促する。[n]
+[chara_show name="shusuke" face="tuuzyou" top=20 left=230]
 修介「さあ、早く」[n]
 有無を言わさぬ態度で悟る。[n]
 こうなった修介くんはもう、自分の言ったことを覆さない。[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……今までありがとうね」[n]
 最後にそう言い残して、修介くんは扉を完全に閉ざした。[n]
+[mask effect="fadeIn"]
+[chara_hide name="shusuke"]
+[bg storage="黒.png"]
+[mask_off]
 ;暗転
 それから、修介くんは私と一切会話をしなくなった。[n]
 ほどなくして修介くんは夜勤のコンビニバイトを始め、生活時間帯が全く逆転してしまったため、家の中で会うこともなくなった。[n]
 今、修介くんがどのようなことを思って生きているのか、まだ小説を書いているのかすらわからない。[n]
 こうして、私たちの人生は、あの日のたった一言をきっかけにして、永遠にすれ違うことになった。[n]
 ;ＥＮＤ１
+[mask effect="fadeIn"]
+[clearfix name="role_button"]
+@layopt layer="message0" visible=false
+[mask_off]
+[wait time=2000]
+[jump storage="title.ks"]
 
 ;「……そうだよ」[n]を選んだ場合
+*day4_common
 カンナ「……そうだよ」[n]
 カンナ「修介くんには、できるだけ幸せになってほしいとは、ちゃんと思ってるけど」[n]
 カンナ「でも逆に、幸せになった修介くんは、私のことを必要としないよね」[n]
@@ -845,4 +868,76 @@ f.stress += 0
 [chara_mod name="shusuke" face="zityouemi"]
 修介「そんな俺が、君は好きなんだろ」[n]
 そう言って笑った修介くんの顔は、なんだか壊れてしまったみたいだった。[n]
+
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
+[bg storage="コマンド画面背景.jpg"]
+[chara_move name="shusuke" left=0]
+;レイヤ1を表示状態に
+[position layer="message0" frame="frame_command.png" left=0 top=560 width=1280 height=160 page=fore visible=true]
+[layopt layer="1" visible="true"]
+[image storage="../image/b.png" x=800 y=30 width=400 height="200" layer="1" ]
+[l]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=950 y=70 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=70 width="&f.sintyoku*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=120 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=120 width="&f.koukando*1.4" height=20]
+[image storage="../image/bar_base.png" layer=2 x=950 y=170 width=140 height=20]
+[image storage="../image/bar_white.png" layer=2 x=950 y=170 width="&f.stress*1.4" height=20 ]
+
+
+[ptext layer=2 text="進捗" y=70 x=860 size=21 ]
+[ptext layer=2 text="好感度" y=120 x=850 size=21]
+[ptext layer=2 text="ストレス" y=170 x=840 size=21]
+[ptext layer=2 text="&f.sintyoku" y=70 x=1120 size=23]
+[ptext layer=2 text="&f.koukando" y=120 x=1120 size=23]
+[ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
+[ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
+[mask_off]
+[playbgm storage="夜の病室エレクトロ.mp3"]
+*day4_command
+
+[button graphic="お出かけ.png"  target="*day4_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
+[button graphic="甘やかす.png"  target="*day4_amayakasu" x=800 y=400 width=192 height=120 enterimg="甘やかす2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="甘やかす.png" ]
+[button graphic="話を聞く.png"  target="*day4_hanasi" x=800 y=250 width=192 height=120 enterimg="話を聞く2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="話を聞く.png" ]
+[button graphic="進捗チェック.png"   target="*day4_sintyoku" x=1000 y=400 width=192 height=120 enterimg="進捗チェック2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="進捗チェック.png" ]
+[s]
+
+*day4_date
+修介くんを外に連れ出します　（ストレス? 好感度?）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい"  storage="command.ks" target="*dateA_1" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day4_command" width=300 x=50 y=400]
+[s]
+
+
+
+*day4_amayakasu
+修介くんを甘やかします　（ストレス↓↓　好感度↑↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい"  storage="command.ks" target="*amayakasuA_1" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day4_command" width=300 x=50 y=400]
+[s]
+
+
+
+*day4_hanasi
+修介くんの話を聞きます　（ストレス↑　好感度↑）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*hanasiA_1" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day4_command" width=300 x=50 y=400]
+[s]
+
+
+*day4_sintyoku
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓）[n]
+コマンドを実行しますか？[n]
+[glink color="btn_07_black" text="はい" storage="command.ks" target="*sintyokuA_1" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day4_command" width=300 x=50 y=400]
+[s]
+
+
 

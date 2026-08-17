@@ -1319,81 +1319,429 @@ f.sintyoku += 10
 ;4日目以降
 ;進捗チェックコマンド一回目
 *sintyokuA_1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
+
 カンナ「どう？　小説は完成させられそう？」[n]
 カンナ「修介くんなら、できるよね」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「……君は、他人にプレッシャーをかけるのがうまいね」[n]
 カンナ「修介くんに、絶対小説を完成させてほしいから」[n]
 修介「簡単に言ってくれるね、本当に」[n]
 修介「わかるかな。君の反応次第で、俺はどうとでもなるんだよ」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「君の反応が悪いと、それだけで死にたくなる」[n]
 修介「……もういっそ、殺してくれよ」[n]
-その言葉を聞いた瞬間、私の中で何かが弾けた。
+その言葉を聞いた瞬間、私の中で何かが弾けた。[n]
+[mask effect="fadeIn"]
+[chara_hide name="shusuke"]
+[bg storage="首絞め.png"]
+[mask_off]
 ;首絞めCG
 修介「っぐ……、かはっ……」[n]
-考えるより先に、私は修介くんの首を絞めていた。
+考えるより先に、私は修介くんの首を絞めていた。[n]
 カンナ「本当にいいんだね？　殺しちゃっても」[n]
 カンナ「もう小説書けなくなるよ、いいんだね？　それで」[n]
 修介「ぅ……ぁぁ……」[n]
-修介くんは息も絶え絶えになりながら、唇の動きだけで「いやだ」[n]と言ってみせた。
-その途端、私の手は修介くんの首から離れていた。
+修介くんは息も絶え絶えになりながら、唇の動きだけで「いやだ」と言ってみせた。[n]
+[bg storage="修介の部屋.png"]
+その途端、私の手は修介くんの首から離れていた。[n]
+[chara_show name="shusuke" face="odoroki" top=20 left=230]
 ;修介立ち絵
 修介「かはっ……はぁっ……なんてことするんだ、君は！」[n]
 カンナ「ご、ごめん……」[n]
-自分でも、なんで修介くんの首を絞めるなんてことをしたのか、わからなかった。
-感じたことのない熱情が、指先を奔っている。
-;ストレス＋１５、好感度－１０
+自分でも、なんで修介くんの首を絞めるなんてことをしたのか、わからなかった。[n]
+感じたことのない熱情が、指先を奔っている。[n]
+[iscript]
+f.stress += 10
+f.koukando -= 5
+f.day += 1
+f.sintyokucheck += 1
+f.sintyokucheckA  += 1
+[endscript]
+
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="-5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+10" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
 
 ;デートコマンド一回目
+*dateA_1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 カンナ「修介くん、お買い物付き合ってよ」[n]
 修介「何？　荷物持ち？　別にそのくらいするけど」[n]
 カンナ「そういうのじゃなくて、とにかく、すぐ終わるから付き合ってよ」[n]
 
+[if exp="f.sintyoku < 90"]
 ;進捗90％未満の場合
+[chara_mod name="shusuke" face="mesorasi"] 
 修介「まだ小説全然書き終わってないから焦らなきゃなんだけど……」[n]
 カンナ「大丈夫、本当にちょっとだけだから」[n]
 修介「……一時間以内に終わるんだろうな」[n]
 カンナ「余裕だよ、ほら行こ」[n]
-
+[else]
 ;進捗90％以上の場合
+
 修介「まあ、そこそこ小説書けてきてはいるから、ちょっとぐらいなら……」[n]
 カンナ「ホント？　それじゃあ行こ」[n]
+[endif]
 
 ;共通
 ;背景：商店街
+[bg storage="道路.png" time=1000]
 カンナ「私が行きたかったのは、ここだよ」[n]
+[chara_mod name="shusuke" face="odoroki"]
 修介「……アクセサリー屋？」[n]
 カンナ「お手頃だし、良い店でしょ？」[n]
 カンナ「このペアリングが、欲しかったの」[n]
 ;ペアリングの画像
+[chara_mod name="shusuke" face="tuuzyou"] 
 修介「……一応聞くけど、なんでペアリング？」[n]
 カンナ「修介くんとお揃いのやつを着けたくて」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「はぁ……なんでそんなカップルみたいなことしなきゃいけないんだよ」[n]
 
+[glink text="カップルでもこんなことしないよ" color="btn_07_black" width=700 x=400 y=100 target="*dateA1_select1"]
+[glink text="目に見える形の繋がりが欲しいから" color="btn_07_black" width=700 x=400 y=200 target="*dateA1_select2"]
+[glink text="修介くんを私のにしたいから" color="btn_07_black" width=700 x=400 y=300 target="*dateA1_select3"]
+[s]
 ;「カップルでもこんなことしないよ？」[n]
 ;「目に見える形の繋がりが欲しいからね」[n]
 ;「修介くんを私のにしたいから」[n]
 
+*dateA1_select1
 ;カップルでも～を選んだ場合
 修介「じゃあ、ますます俺たちがやる意味がわかんないじゃん」[n]
 ;ストレス＋５、好感度－５
+[iscript]
+f.stress += 5
+f.koukando -= 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="-5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+[jump target="*dateA1_common"]
+*dateA1_select2
 ;目に見える形の～を選んだ場合
+[chara_mod name="shusuke" face="tameiki"]
 修介「その発想がカップルみたいだって言ってるんだよ……はぁ」[n]
 ;ストレス＋５、好感度±０
+[iscript]
+f.stress += 5
+f.koukando += 0
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+-0" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump target="*dateA1_common"]
+*dateA1_select3
 ;修介くんを～を選んだ場合
 修介「ド直球の回答が来たな。……まぁ、回りくどい言い方よりは、いいんだけどさ」[n]
 ;ストレス－５、好感度＋５
+[iscript]
+f.stress -= 5
+f.koukando += 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+5" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump target="*dateA1_common"]
+
+*dateA1_common
 ;共通
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「なんにせよ、別に買うのは君の自由だよ」[n]
 修介「それを俺が着けるかどうかはわかんないけどさ」[n]
 カンナ「じゃあ、貰ってくれるんだ？」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「……まあ、貰うだけなら」[n]
 カンナ「やった」[n]
 修介「あんまり調子に乗らないでよ？　本当に、貰うだけだから」[n]
 カンナ「はぁい」[n]
 
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA_2
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;デートコマンド二回目
 ;背景：ゲーセン
 修介「……で、なんで今日はこんなところに俺を連れてきたの」[n]
@@ -1409,29 +1757,249 @@ f.sintyoku += 10
 修介「趣味悪すぎるだろ」[n]
 カンナ「うん。知ってる。それじゃあ三百円どうぞ」[n]
 修介「三百円じゃ上手い人でもなかなか取れないよ……」[n]
-……
+……[n]
 修介「あ～、全然掴めないし、そもそもこの台アーム弱すぎだろ……」[n]
 カンナ「あれ、そういえば修介くん、よく見たら今日この前買ったリング着けてきてるね」[n]
 修介「っ……！」[n]
 カンナ「あ、また失敗。三百円使いきっちゃったね」[n]
 修介「……君がいきなり話しかけるからだろ」[n]
 
+[glink text="だって、嬉しかったんだもん" color="btn_07_black" width=700 x=400 y=100 target="*dateA2_select1"]
+[glink text="責任転嫁？" color="btn_07_black" width=700 x=400 y=200 target="*dateA2_select2"]
+[glink text="ごめんごめん" color="btn_07_black" width=700 x=400 y=300 target="*dateA2_select3"]
+[s]
 ;「だって、嬉しかったんだもん」[n]
 ;「責任転嫁？」[n]
 ;「ごめんて」[n]
 
+*dateA2_select1
 ;だって～を選んだ場合
 修介「はぁ……もう、しょうがないなぁ」[n]
 ;ストレス－５、好感度＋５
+[iscript]
+f.stress -= 5
+f.koukando += 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="-5" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA2_select2
 ;責任転嫁？を選んだ場合
 修介「責任も何も君が突然俺をゲーセンに連れてきてＵＦＯキャッチャーやらせたんでしょ」[n]
 ;ストレス＋５、好感度－５
+[iscript]
+f.stress += 5
+f.koukando -= 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="-5" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA2_select3
 ;ごめんてを選んだ場合
 修介「適当に謝らないでよ、まったく」[n]
 ;ストレス＋５、好感度±０
+[iscript]
+f.stress += 5
+f.koukando += 0
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+-0" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA_3
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;デートコマンド3回目
 カンナ「修介くん、お散歩行こ」[n]
 修介「１０分だけね」[n]
@@ -1442,48 +2010,281 @@ f.sintyoku += 10
 修介「俺、働いてないからろくなとこ連れてってあげられないし、作家気取りだから締め切りとかいうやつに追われて時間も取れないし」[n]
 修介「俺といて、なんの得もないでしょ？」[n]
 
+[glink text="修介くんはネガティブすぎるよ" color="btn_07_black" width=700 x=400 y=100 target="*dateA3_select1"]
+[glink text="私は修介くんと一緒にいて楽しいよ" color="btn_07_black" width=700 x=400 y=200 target="*dateA3_select2"]
+[glink text="損得なんて考えなくていいよ" color="btn_07_black" width=700 x=400 y=300 target="*dateA3_select3"]
+[s]
 ;「修介くんはネガティブすぎるよ」[n]
 ;「私は修介くんと一緒にいて楽しいよ」[n]
 ;「損得なんて考えなくていいよ」[n]
 
+*dateA3_select1
 ;修介くんは～を選んだ場合
 修介「……知ってるよ。だから余計そう思うんだ」[n]
 ;ストレス＋５、好感度±０
+[iscript]
+f.stress += 5
+f.koukando +-= 0
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+-0" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA3_select2
 ;私は～を選んだ場合
 修介「……そう。本当に、趣味悪いよね、君」[n]
 ;ストレス－５、好感度＋５
+[iscript]
+f.stress -= 5
+f.koukando += 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+5" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*dateA3_select3
 ;損得なんて～を選んだ場合
 修介「簡単に言ってくれるなぁ。考えないようにすることができたら、俺の人生、どれだけ楽だったんだろうね」[n]
 ;ストレス＋５、好感度－５
+[iscript]
+f.stress += 5
+f.koukando -= 5
+f.day += 1
+f.date += 1
+f.dateA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando < 0"]
+[eval exp="f.koukando = 0"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="-5" x=318 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=318 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*hanasiA_1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;話を聞くコマンド１回目
 カンナ「そういえば、ベッドの上にこんなものがあったんだけど……」[n]
 ;女性ものの服の画像
+[chara_mod name="shusuke" face="odoroki"]
 修介「……それは、」[n]
 カンナ「これって修介くんの？」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「……まあ」[n]
 カンナ「修介くん、女装するの？」[n]
 修介「……」[n]
 カンナ「するんだ」[n]
 修介「……母が、しろって言ったんだ」[n]
 カンナ「お母さんが？」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「そう。俺の母は、男嫌いだったから」[n]
 修介「俺が小っちゃいころ、親父に捨てられたのがショックだったんだろうね」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「そういうこともあって、小学生ぐらいまで女装させられてたんだ」[n]
 修介「流石に第二次性徴が来てからは気持ち悪がってやんなくなったんだけどさ」[n]
 修介「一応言っとくけど、母はすごく優しい人だったよ。優しすぎるからああなっちゃったんだろうね」[n]
 カンナ「好きだったんだ、お母さんのこと」[n]
+[chara_mod name="shusuke" face="urei"]
 修介「うん……」[n]
 修介「それで、たまにお母さんに会いたくなるとさ、女の子の格好をするんだ」[n]
 修介「もう大人になって、似合いもしないのに、バカみたいだよな」[n]
 カンナ「ええ、そうかな？　似合いそうだし見せてよ」[n]
+[chara_mod name="shusuke" face="mesorasi"]
 修介「ええ……やだよ」[n]
 カンナ「……」[n]
+[chara_mod name="shusuke" face="tameiki"]
 修介「ああもう、わかったよ、やればいいんでしょ、やれば」[n]
+[mask effect="fadeIn" time=500]
+[chara_hide name="shusuke"]
+[bg storage="黒.png"]
+[mask_off]
 ;暗転
-……
+……[n]
+[bg storage="修介の部屋.png"]
+[chara_show name="shusuke" face="josou" top=20 left=230]
 ;修介女装立ち絵
 修介「ど、どう？」[n]
 カンナ「すっごい可愛いよ！　似合ってる」[n]
@@ -1491,7 +2292,97 @@ f.sintyoku += 10
 カンナ「うん。多分、みんな可愛いって言うよ」[n]
 修介「みんな……そう、ふうん」[n]
 ;ストレス＋５、好感度＋５
+[iscript]
+f.stress += 5
+f.koukando += 5
+f.day += 1
+f.hanasi += 1
+f.hanasiA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+
+*hanasiA_2
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;話を聞くコマンド二回目
 カンナ「あのさ、修介くん」[n]
 カンナ「スマホ見てたらこんな写真流れてきたんだけど、これ、修介くん？」[n]
@@ -1504,21 +2395,207 @@ f.sintyoku += 10
 修介「……別に、個人の勝手だろ」[n]
 カンナ「……そう」[n]
 ;ストレス＋５、好感度－５
+[iscript]
+f.stress += 5
+f.koukando += 5
+f.day += 1
+f.hanasi += 1
+f.hanasiA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+
+*hanasiA_3
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;話を聞くコマンド３回目
 カンナ「そういえば、今朝見たら女装アカウント消えてたね」[n]
 修介「ああ。……なんか、よくよく考えたら虚しくなってさ」[n]
 修介「馬鹿みたいだと思って、やめちゃった」[n]
 カンナ「やっぱり、小説書いてる方がいいよ、修介くんは」[n]
 修介「はは、そうかな」[n]
+[jump target="*hanasiA_3_1" cond="f.sintyoku < 90"]
+[jump target="*hanasiA_3_2 cond= "f.sintyoku >=90"]
 
+*hanasiA_3_1
 ;進捗90%未満の場合
 修介「……まあ、今回の小説、書きあがりそうもないんだけどさ」[n]
-
+[jump target="*hanasiA_3_common"]
+*hanasiA_3_2
 ;進捗90％以上の場合
 修介「あとは今回の小説がどうなるかだな……絶対に書き終えないと」[n]
+[jump target="*hanasiA_3_common"]
 ;ストレス＋５、好感度＋５
+*hanasiA_3_common
+[iscript]
+f.stress += 5
+f.koukando += 5
+f.day += 1
+f.hanasi += 1
+f.hanasiA  += 1
+[endscript]
 
+[if exp="f.stress > 100"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+5" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="+5" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+
+*amayakasuA_1
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;甘やかすコマンド一回目
 カンナ「修介くんは今日も頑張ってて偉いね」[n]
 修介「……別に、こんなの頑張ってるうちに入らないだろ」[n]
@@ -1533,7 +2610,96 @@ f.sintyoku += 10
 ;修介頬染め目逸らし
 修介「……あ、そう」[n]
 ;ストレス－１０，好感度＋１０
+[iscript]
+f.stress -= 10
+f.koukando += 10
+f.day += 1
+f.amayakasu += 1
+f.amayakasuA  += 1
+[endscript]
 
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 100"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+10" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="-10" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*amayakasuA_2
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;甘やかすコマンド二回目
 カンナ「修介くん、ちょっと休憩したら？」[n]
 カンナ「昼寝するなら、膝枕でもしてあげるよ」[n]
@@ -1547,7 +2713,96 @@ f.sintyoku += 10
 カンナ「それでもいいじゃん」[n]
 修介「……君は無責任にそういうこと言うよね」[n]
 ;ストレス－１０、好感度＋１０
+[iscript]
+f.stress -= 10
+f.koukando += 10
+f.day += 1
+f.amayakasu += 1
+f.amayakasuA  += 1
+[endscript]
 
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+10" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="-10" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
+
+*amayakasuA_3
+[mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
+[cm]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[chara_move name="shusuke" left=230]
+[chara_mod name="shusuke" face="tuuzyou"]
+[bg storage="修介の部屋.png" time=0]
+[image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
+[layopt layer="2" visible="true"]
+[image storage="../image/bar_base.png" layer=2 x=140 y=55 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=55 width="&f.sintyoku" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17]
+[image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17]
+[ptext layer=2 text="進捗" y=55 x=79 size=17 ]
+[ptext layer=2 text="好感度" y=90 x=70 size=17]
+[ptext layer=2 text="ストレス" y=125 x=60 size=17]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
+[mask_off]
 ;甘やかすコマンド３回目
 カンナ「修介くん、何か差し入れでも買ってきてあげようか」[n]
 修介「別にいいよ……」[n]
@@ -1557,5 +2812,70 @@ f.sintyoku += 10
 カンナ「修介くんガム好きでしょ？　小説書いてると口さみしくなるもんね」[n]
 修介「まあ、そうだけど……よく見てるなホント」[n]
 ;ストレス－１０、好感度＋１０
+[iscript]
+f.stress -= 10
+f.koukando += 10
+f.day += 1
+f.amayakasu += 1
+f.amayakasuA  += 1
+[endscript]
+
+[if exp="f.stress < 0"]
+[eval exp="f.stress = 0"]
+[endif]
+
+[if exp="f.koukando > 100"]
+[eval exp="f.koukando = 100"]
+[endif]
+
+
+[playse storage="データ表示1.mp3"]
+[image storage="../image/吹き出し.png" x=300 y=50 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=85 width=60 height=30 layer=1]
+[image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1] 
+[if exp="(f.koukando >= 70 || f.koukando <= 40) && (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando >= 70 || f.koukando <= 40) || (f.stress >= 70 || f.stress <= 40) && (f.sintyoku < 100)"]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=321 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <95)""]
+[iscript]
+f.sintyoku += 10
+[endscript]
+[ptext layer=2 text="+10" x=318 y=54 size=16 color="#000000"]
+[elsif exp="(f.koukando < 70 || f.koukando > 40) && (f.stress < 70 || f.stress > 40 ) && (f.sintyoku <100)""]
+[iscript]
+f.sintyoku += 5
+[endscript]
+[ptext layer=2 text="+5" x=318 y=54 size=16 color="#000000"]
+[else]
+[iscript]
+f.sintyoku += 0
+[endscript]
+[ptext layer=2 text="+-0" x=318 y=54 size=16 color="#000000"]
+[endif]
+
+
+[ptext layer=2 text="+10" x=321 y=89 size=16 color="#000000"  ]
+[ptext layer=2 text="-10" x=321 y=124 size=16 color="#000000"]
+[ptext layer=2 text="&f.sintyoku" y=55 x=260 size=16 name="sintyoku_number" overwrite=true]
+[ptext layer=2 text="&f.koukando" y=90 x=260 size=16 name="koukando_number" overwrite=true]
+[ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+
+
+[anim name="sintyoku" width="&f.sintyoku" time=1000]
+[anim name="stress" width="&f.stress" time=1000]
+[anim name="koukando" width="&f.koukando" time=1000]
+[wait time=2000]
+
+
+[jump storage="Day5~.ks" target="*day5" cond="f.day === 5"]
+[jump storage="Day5~.ks" target="*day6" cond="f.day === 6"]
+[jump storage="Day5~.ks" target="*day7" cond="f.day === 7"]
 
 
