@@ -1770,7 +1770,7 @@ f.sintyoku += 0
 カンナ「ＵＦＯキャッチャーで欲しいぬいぐるみがあって」[n]
 修介「……俺、そういうのすごい苦手なんだけど」[n]
 カンナ「だよね。だから連れてきたんだよ」[n]
-[chara_mod name="shusuke" face="odororki"]
+[chara_mod name="shusuke" face="odoroki"]
 修介「はぁ？」[n]
 カンナ「苦戦する修介くんが見たくて」[n]
 [chara_mod name="shusuke" face="tameiki"]

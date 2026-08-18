@@ -82,6 +82,31 @@ if (typeof clear_flag === "undefined"){
 [if exp="sf.kenjouend==null"]
 [eval exp="sf.kenjouend=1"]
 [endif]
+
+[if exp="sf.ribetuend==null"]
+[eval exp="sf.ribetuend=1"]
+[endif]
+
+[if exp="sf.nareaiend==null"]
+[eval exp="sf.nareaiend=1"]
+[endif]
+
+[if exp="sf.kyouisonend==null"]
+[eval exp="sf.kyouisonend=1"]
+[endif]
+
+[if exp="sf.ningyouend==null"]
+[eval exp="sf.ningyouend=1"]
+[endif]
+
+[if exp="sf.hakusiend==null"]
+[eval exp="sf.hakusiend=1"]
+[endif]
+
+[if exp="sf.yumeoizigokuend==null"]
+[eval exp="sf.yumeoizigokuend=1"]
+[endif]
+
 ;タイトル画面へ移動
 @jump storage="title.ks"
 
