@@ -200,7 +200,7 @@
 [s]
 
 *day1_sintyoku
-進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓）[n]
 コマンドを実行しますか？[n]
 [glink color="btn_07_black" text="はい" storage="command.ks" target="*sintyoku1" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day1_command" width=300 x=50 y=400]
@@ -443,7 +443,7 @@ f.stress += 0
 [jump storage="command.ks" target="*hanasi2" cond="f.hanasi === 1"]
 
 *day2_sintyoku
-進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓）[n]
 コマンドを実行しますか？[n]
 [glink color="btn_07_black" text="はい" target="*day2_sintyoku2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day2_command" width=300 x=50 y=400]
@@ -721,7 +721,7 @@ f.stress += 0
 [jump storage="command.ks" target="*hanasi2" cond="f.hanasi === 1"]
 [jump storage="command.ks" target="*hanasi3" cond="f.hanasi === 2"]
 *day3_sintyoku
-進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓↓）[n]
+進捗チェックをして修介くんを詰めます　（ストレス↑↑　好感度↓）[n]
 コマンドを実行しますか？[n]
 [glink color="btn_07_black" text="はい" target="*day3_sintyoku2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day3_command" width=300 x=50 y=400]
@@ -836,6 +836,9 @@ f.stress += 0
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
+[iscript]
+sf.end1 += 1
+[endscript]
 [jump storage="title.ks"]
 
 ;「……そうだよ」[n]を選んだ場合

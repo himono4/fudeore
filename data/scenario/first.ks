@@ -51,7 +51,37 @@ if (typeof clear_flag === "undefined"){
 }
 [endscript]
 
+[if exp="sf.end1==null"]
+[eval exp="sf.end1=1"]
+[endif]
 
+[if exp="sf.bouryokuend==null"]
+[eval exp="sf.bouryokuend=1"]
+[endif]
+
+[if exp="sf.dateend_1==null"]
+[eval exp="sf.dateend_1=1"]
+[endif]
+
+[if exp="sf.dateend_2==null"]
+[eval exp="sf.dateend_2=1"]
+[endif]
+
+[if exp="sf.amayakasuend==null"]
+[eval exp="sf.amayakasuend=1"]
+[endif]
+
+[if exp="sf.josouend==null"]
+[eval exp="sf.josouend=1"]
+[endif]
+
+[if exp="sf.stressend==null"]
+[eval exp="sf.stressend=1"]
+[endif]
+
+[if exp="sf.kenjouend==null"]
+[eval exp="sf.kenjouend=1"]
+[endif]
 ;タイトル画面へ移動
 @jump storage="title.ks"
 

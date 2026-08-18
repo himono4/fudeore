@@ -60,7 +60,12 @@
 [image storage="../image/bar_base.png" layer=2 x=140 y=90 width=100 height=17]
 [image storage="../image/bar_white.png" layer=2 x=140 y=90 width="&f.koukando" height=17 name="koukando"]
 [image storage="../image/bar_base.png" layer=2 x=140 y=125 width=100 height=17]
+
+[if exp="f.stress === 0"]
+[image storage="../image/bar_white.png" layer=2 x=140 y=125 width="0" height=17 name="stress"]
+[else]
 [image storage="../image/bar_white.png" layer=2 x=140 y=125 width="&f.stress" height=17 name="stress"]
+[endif]
 [ptext layer=2 text="進捗" y=55 x=79 size=17 ]
 [ptext layer=2 text="好感度" y=90 x=70 size=17]
 [ptext layer=2 text="ストレス" y=125 x=60 size=17]
@@ -78,13 +83,13 @@
 *day5_A
 [bg storage="修介の部屋.png" time=500]
 ;進捗８５％未満の場合
-修介くんにご飯を運ぶため、部屋の扉を開ける。
-今日の修介くんは珍しくパソコンとは向き合わず、ひたすらに部屋中を歩き回っていた。
+修介くんにご飯を運ぶため、部屋の扉を開ける。[n]
+今日の修介くんは珍しくパソコンとは向き合わず、ひたすらに部屋中を歩き回っていた。[n]
 カンナ「一体どうしたの？」[n]
 ;修介立ち絵
 [chara_show name="shusuke" face="tameiki" top=20 left=230]
 修介「思いつかないんだよ、全然！　次の展開も、登場人物がどう喋るのかも！」[n]
-修介くんは苛立たしげに怒鳴る。
+修介くんは苛立たしげに怒鳴る。[n]
 [jump target="*day5_A_1" cond="f.stress < 50"]
 [jump target="*day5_A_2" cond="f.stress >= 50"]
 
@@ -166,7 +171,11 @@ f.stress -= 5
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
 [ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[if exp="f.stress === 0"]
+[anim name="stress" width="0" time=1000]
+[else]
 [anim name="stress" width="&f.stress" time=1000]
+[endif]
 [wait time=2000]
 [jump target="*day5_command_gamen"]
 
@@ -472,7 +481,11 @@ f.stress -= 5
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
 [ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[if exp="f.stress === 0"]
+[anim name="stress" width="0" time=1000]
+[else]
 [anim name="stress" width="&f.stress" time=1000]
+[endif]
 [wait time=2000]
 [jump target="*day5_command_gamen"]
 
@@ -579,7 +592,11 @@ f.stress -= 5
 [image storage="../image/吹き出し.png" x=300 y=120 width=60 height=30 layer=1]
 [ptext layer=2 text="-5" x=318 y=124 size=16 color="#000000"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=16 name="stress_number" overwrite=true]
+[if exp="f.stress === 0"]
+[anim name="stress" width="0" time=1000]
+[else]
 [anim name="stress" width="&f.stress" time=1000]
+[endif]
 [wait time=2000]
 [jump target="*day5_command_gamen"]
 
@@ -608,6 +625,8 @@ f.stress += 5
 
 *day5_command_gamen
 [mask effect="fadeIn" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
 [bg storage="コマンド画面背景.jpg"]
 [chara_move name="shusuke" left=0]
@@ -623,8 +642,11 @@ f.stress += 5
 [image storage="../image/bar_base.png" layer=2 x=950 y=120 width=140 height=20]
 [image storage="../image/bar_white.png" layer=2 x=950 y=120 width="&f.koukando*1.4" height=20]
 [image storage="../image/bar_base.png" layer=2 x=950 y=170 width=140 height=20]
+[if exp="f.stress === 0"]
+[image storage="../image/bar_white.png" layer=2 x=950 y=170 width="0" height=20 ]
+[else]
 [image storage="../image/bar_white.png" layer=2 x=950 y=170 width="&f.stress*1.4" height=20 ]
-
+[endif]
 
 [ptext layer=2 text="進捗" y=70 x=860 size=21 ]
 [ptext layer=2 text="好感度" y=120 x=850 size=21]
@@ -668,7 +690,7 @@ f.stress += 5
 [jump storage="command.ks" target="*amayakasuA_2" cond="f.amayakasuA === 1"]
 
 *day5_hanasi
-修介くんの話を聞きます　（ストレス↓　好感度↑）[n]
+修介くんの話を聞きます　（ストレス↑　好感度↑）[n]
 コマンドを実行しますか？[n]
 [glink color="btn_07_black" text="はい"  target="*day5_hanasi2" width=300  x=50 y=300 ]
 [glink color="btn_07_black" text="いいえ" target="*day5_command" width=300 x=50 y=400]
@@ -690,7 +712,7 @@ f.stress += 5
 
 [jump storage="end.ks" target="*bouryokuend" cond="f.sintyokucheck === 4"]
 [jump storage="command.ks" target="*sintyokuA_1" cond="f.sintyokucheckA === 0"]
-[jump storage="command.ks" target="*sintyokuA_1" cond="f.sintyokucheckA === 1"]
+[jump storage="end.ks" target="*bouryokuend" cond="f.sintyokucheckA === 1"]
 
 
 
