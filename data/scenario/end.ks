@@ -60,6 +60,7 @@
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [mask_off]
+[playbgm storage="tired.mp3"]
 ;暴力コマンド（二回目以降進捗チェックコマンドは暴力コマンドに変わる。[n]ただしそれまでに四回進捗チェックコマンドを選んでないとこのコマンドは選択不可能になる。[n]これを選んだら一発バッドエンド直行）
 カンナ「……修介くん、小説はどのぐらい書いた？」[n]
 カンナ「もう、書くの辛くなった？」[n]
@@ -136,6 +137,7 @@
 私は修介くんの遺体をトランクに詰め込み、遠くの海へと出かけた。[n]
 ;暴力エンド
 [mask effect="fadeIn"]
+
 [clearfix name="role_button"]
 [freeimage layer=1]
 [freeimage layer=2]
@@ -145,6 +147,7 @@
 [iscript]
 sf.bouryokuend += 1
 [endscript]
+[fadeoutbgm time=1000]
 [jump storage="title.ks"]
 
 *dateend
@@ -175,6 +178,7 @@ sf.bouryokuend += 1
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [mask_off]
+[playbgm storage="Default_Mode_Network.mp3"]
 ;デートコマンド五回目
 カンナ「ねえ、修介くん」[n]
 修介「何？」[n]
@@ -218,6 +222,7 @@ sf.bouryokuend += 1
 [bg storage="観覧車内.png" time=800]
 ;ＣＧ　観覧車
 [chara_mod name="shusuke" face="urei"]
+
 修介「……クライマックスが観覧車だなんて、ありきたりだよな」[n]
 カンナ「今書いてる小説の話？」[n]
 修介「そう。あんまりにもありきたりだから、もうこのクライマックスごと無しにしようかと思ってるぐらいだよ」[n]
@@ -265,6 +270,7 @@ sf.bouryokuend += 1
 カンナ「ついてきてほしい」[n]
 修介「……わかったよ」[n]
 [mask effect="fadeIn"]
+[fadeoutbgm time=500]
 [bg storage="黒.png" time=100]
 [chara_hide_all]
 [mask_off]
@@ -275,6 +281,7 @@ sf.bouryokuend += 1
 修介くんを連れてやってきたのは、清廉な存在である修介くんにはとても似合わないような、ラブホテル街。[n]
 さらにその、数多あるホテルのうち、見るからに外装がメルヘンチックで、屋上ではメリーゴーランドがくるくると回転している、夢の中から飛び出してきたようなホテルの前に、私たちはいた。[n]
 [chara_show name="shusuke" top=20 left=230 face="zityouemi"]
+[playbgm storage="Afterimage_of_Dusk.mp3"]
 修介「……はは」[n]
 修介くんは、全て察したかのように笑った。[n]
 修介「ここが、君の来たかった場所？」[n]
@@ -350,6 +357,8 @@ sf.bouryokuend += 1
 修介くんが謝れば謝るほど、自分が惨めになる気がした。[n]
 [mask effect="fadeIn"]
 [bg storage="黒.png" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [chara_hide_all]
 [mask_off]
 ;画面暗転
@@ -363,8 +372,7 @@ sf.bouryokuend += 1
 ;疎遠エンド
 [mask effect="fadeIn"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
@@ -401,6 +409,8 @@ sf.dateend_1 +=1
 カンナ「嬉しいよ」[n]
 修介「……そう」[n]
 [mask effect="fadeIn"]
+[freeimage layer=1]
+[freeimage layer=2]
 [bg storage="ラブホ内.png" time=100]
 [chara_hide_all]
 [mask_off]
@@ -424,8 +434,7 @@ sf.dateend_1 +=1
 ;快楽エンド
 [mask effect="fadeIn"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
@@ -464,6 +473,7 @@ sf.dateend_2 +=1
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
 [mask_off]
+[playbgm storage="出先で.mp3"]
 ;話を聞くコマンド五回目（女装配信エンド）
 修介「あのさ、カンナちゃん」[n]
 修介「俺、ここ最近カンナちゃんに話を聞いてもらって気づいたんだ」[n]
@@ -530,6 +540,7 @@ sf.dateend_2 +=1
 いずれにしろ、今の私には、変わってしまった修介くんの生き方を遠巻きに見ることしかできなかった。[n]
 ;女装配信エンド
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [clearfix name="role_button"]
 [bg storage="黒.png"]
 [freeimage layer=1]
@@ -579,6 +590,7 @@ sf.josouend +=1
 修介「どうせ俺を陥れることが目的なら、もうそういうことは……」[n]
 カンナ「じゃあ、もういいや」[n]
 [chara_mod name="shusuke" face="odoroki"]
+[playbgm storage="Afterimage_of_Dusk.mp3"]
 修介「……え」[n]
 カンナ「もう二度と修介くんには構ってあげないし喋りかけたりもしない」[n]
 カンナ「今まで付きまとって悪かったね。それじゃあ」[n]
@@ -643,6 +655,7 @@ sf.josouend +=1
 [iscript]
 sf.amayakasuend +=1
 [endscript]
+[fadeoutbgm time=1000]
 [mask effect="fadeIn"]
 [clearfix name="role_button"]
 [bg storage="黒.png"]
@@ -746,11 +759,13 @@ sf.stressend +=1
 
 *kenjouend
 [bg storage="修介の部屋.png" time=800]
+
 ;ストレスが０になった場合（5日目から到達可能）
 いつも通り修介くんの部屋の扉を開く。[n]
 すると、修介くんはパソコンとにらめっこする代わりに、カーテンを開き、部屋の片づけに勤しんでいた。[n]
 カンナ「一体どうしたの？」[n]
 [chara_show name="shusuke" top=20 left=230 ]
+[playbgm storage="Lonely_Platform.mp3"]
 修介「気づいたんだよ、まずは生活の基盤を整えるのが先だって」[n]
 カンナ「……なんか、修介くんらしくないこと言ってる」[n]
 [chara_mod name="shusuke" face="egao"]
@@ -822,6 +837,7 @@ sf.stressend +=1
 sf.kenjouend +=1
 [endscript]
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [clearfix name="role_button"]
 [bg storage="黒.png" time=10]
 [freeimage layer=1]
@@ -843,6 +859,7 @@ sf.kenjouend +=1
 カンナ「修介くん、一体どうしたの」[n]
 ;修介立ち絵
 [chara_show name="shusuke" top=20 left=230]
+[playbgm storage="Lonely_Platform.mp3"]
 修介「出て行くんだ、この家を」[n]
 カンナ「……なんでそんないきなり」[n]
 修介「小説、書きあがらなかったんだ」[n]
@@ -918,6 +935,7 @@ sf.kenjouend +=1
 sf.ribetuend +=1
 [endscript]
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [bg storage="黒.png"]
 [clearfix name="role_button"]
 [freeimage layer=1]
@@ -935,9 +953,10 @@ sf.ribetuend +=1
 修介くんはもはやパソコンと向き合うこともなく、代わりに外出着に着替えて、どこかへ行こうとする準備をしていた。[n]
 カンナ「修介くん、どうしたの？　散歩？」[n]
 [chara_show name="shusuke" top=20 left=230]
+[playbgm storage="出先で.mp3"]
 修介「違うよ。バイトの面接があるから受けに行くんだ」[n]
 カンナ「小説は？　書きあがったの？」[n]
-修介「まだだよ。[n]多分、今回は完成できないと思う」[n]
+修介「まだだよ。多分、今回は完成できないと思う」[n]
 カンナ「諦めるの？」[n]
 修介「うん」[n]
 あまりにあっさり頷くから、激しく糾弾したくなった。[n]
@@ -981,6 +1000,8 @@ sf.ribetuend +=1
 ;修介立ち絵消去
 そして、修介くんはバイトの面接に向かってしまった。[n]
 [mask effect="fadeIn"]
+[freeimage layer=1]
+[freeimage layer=2]
 [bg storage="黒.png" time=100]
 [mask_off]
 ;画面暗転
@@ -1002,10 +1023,10 @@ sf.ribetuend +=1
 sf.nareaiend +=1
 [endscript]
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [bg storage="黒.png"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
@@ -1027,6 +1048,7 @@ sf.nareaiend +=1
 カンナ「また自分の才能がないからとか、そういうこと言うのかな？」[n]
 カンナ「何度も言ってるけど、私は修介くんの小説が本当に好きで」[n]
 [chara_mod name="shusuke" face="tuuzyou"]
+[playbgm storage="Afterimage_of_Dusk.mp3"]
 修介「もう、やめてくれない？」[n]
 修介「……俺のファンでいるのは、もう」[n]
 カンナ「……」[n]
@@ -1074,6 +1096,8 @@ sf.nareaiend +=1
 これが、私が責任を取るたった一つの方法であれば、守るしかなかった。[n]
 [mask effect="fadeIn"]
 [bg storage="黒.png" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [chara_hide_all]
 [mask_off]
 ;画面暗転
@@ -1100,10 +1124,10 @@ sf.nareaiend +=1
 sf.kyouisonend +=1
 [endscript]
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [bg storage="黒.png"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
@@ -1113,7 +1137,8 @@ sf.kyouisonend +=1
 ;小説が完成、好感度50未満の場合
 [bg storage="修介の部屋.png" time=800]
 いつも通り修介くんの部屋の扉を開く。[n]
-[bg storage="パソコン.png" time=800]
+[bg storage="CG_パソコン.png" time=800]
+[playbgm storage="tired.mp3"]
 修介くんは相変わらず、パソコンの画面と向き合っている。[n]
 カンナ「修介くん、小説の方はどう？」[n]
 カンナ「間に合いそう？」[n]
@@ -1130,7 +1155,7 @@ sf.kyouisonend +=1
 そこで初めて、修介くんはこっちを向いた。[n]
 修介「だって俺は、学校の屋上に行って、澄んだ青空を友達と眺めなきゃいけないんだ」[n]
 [chara_hide_all]
-[bg storage="パソコン.png" time=500]
+[bg storage="CG_パソコン.png" time=500]
 そして、再びパソコンと向き合い始めた。[n]
 カンナ「ねえ、それってどういうことなの」[n]
 修介「……」[n]
@@ -1143,6 +1168,8 @@ sf.kyouisonend +=1
 修介くんは完全に、この世界から遊離してしまっていた。[n]
 [mask effect="fadeIn"]
 [bg storage="廊下.png" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [mask_off]
 ;画面暗転
 ;背景：黒
@@ -1161,19 +1188,21 @@ sf.kyouisonend +=1
 sf.ningyouend +=1
 [endscript]
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [bg storage="黒.png"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
 [jump storage="title.ks"]
 
 *hakusiend
-[bg storage="パソコン.png" time=800]
+[bg storage="CG_パソコン.png" time=800]
+[playbgm storage="tired.mp3"]
 ;小説は完成、ストレス８０以上、好感度５０以上の場合
 いつも通り修介くんの部屋の扉を開く。[n]
+
 修介くんはやっぱりいつも通りパソコンと向き合っていて、だけどいつも見ないようなエナジードリンクの缶が机の上に転がっていた。[n]
 カンナ「修介くん、もしかして寝てないんじゃ……」[n]
 修介「ああ……うん」[n]
@@ -1222,6 +1251,8 @@ sf.ningyouend +=1
 賽の河原で石積みするみたいに、不毛なことを。[n]
 [mask effect="fadeIn"]
 [bg storage="黒.png" time=100]
+[freeimage layer=1]
+[freeimage layer=2]
 [mask_off]
 ;画面暗転
 ;背景：黒
@@ -1231,7 +1262,7 @@ sf.ningyouend +=1
 わかりやすくリストカットなんかはしなくても、それは充分自傷行為と言ってよかった。[n]
 今の修介くんは、奇しくも私が望んだ通り、一人で苦しみながら小説を書き続けている。[n]
 だけど私は、こんな修介くんを見たかったのだろうか。[n]
-もっと修介くんに寄り添って、支えた方が良かったんじゃないだろうか？
+もっと修介くんに寄り添って、支えた方が良かったんじゃないだろうか？[n]
 もう遅すぎるか、なんて思いながら、私は今日も修介くんの部屋に向かう。[n]
 ;白紙エンド
 [iscript]
@@ -1240,8 +1271,7 @@ sf.hakusiend +=1
 [mask effect="fadeIn"]
 [bg storage="黒.png"]
 [clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
+
 @layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
@@ -1254,6 +1284,7 @@ sf.hakusiend +=1
 修介くんはノートパソコンと向き合って、小説を書いていた。[n]
 あまりにも集中しているようだったのでしばらく様子を見ていると、やがて修介くんはエンターキーを押し、呟いた。[n]
 [chara_show name="shusuke" face="tuuzyou" top=20 left=230]
+[playbgm storage="直りかけのRadio.mp3"]
 修介「……書き終わった」[n]
 カンナ「本当？」[n]
 [chara_mod name="shusuke" face="odoroki"]
@@ -1319,6 +1350,7 @@ sf.hakusiend +=1
 なんて感想を修介くんに伝えたら、また大げさだなんて言って素直に受け取ってはくれなかったけど。[n]
 きっと、修介くんは近いうちに新人賞を獲るだろう。[n]
 ——そう、思っていた。[n]
+[fadeoutbgm time=1000]
 [bg storage="修介の部屋.png" time=800]
 ;背景：修介の部屋
 数か月後。[n]
@@ -1326,6 +1358,7 @@ sf.hakusiend +=1
 今回発表されるのは、一次選考に通ったかどうか。[n]
 その結果は——落選だった。[n]
 [chara_show name="shusuke" face="tameiki" top=20 left=230]
+[playbgm storage="路地裏カセットテープ.mp3"]
 修介「はは……どこにもないじゃん、俺のペンネーム」[n]
 何度スクロールして確認しても、修介くんのペンネームも作品名も、そこには載っていなかった。[n]
 修介「一次にすら通らないのかよ、俺……」[n]
@@ -1365,6 +1398,9 @@ sf.hakusiend +=1
 [chara_hide_all]
 [bg storage="画面割る.png" time=800]
 修介「……さよなら」[n]
+[playse storage="ガラスにひびが入る.mp3"]
+[bg storage="画面割れる.jpg" time=100]
+[wait time=500]
 ;液晶が割れるＣＧ
 ;落選エンド
 [iscript]
@@ -1383,9 +1419,11 @@ sf.yumeoizigokuend +=1
 *trueend
 ;全エンド解放後、落選エンドルート２周目
 ;途中までは同じ、周回分岐マークから分岐
+[fadeoutbgm time=500]
 だから、私は、諦めるわけにはいかないのだ。[n]
 何度も何度も、繰り返したって。[n]
 [chara_mod name="shusuke" face="tuuzyou"]
+[playbgm storage="Twilight_Breath.mp3"]
 修介「……君、こういう結果になるって、知ってたでしょ」[n]
 修介「だって、前にも見てるもんね」[n]
 修介「同じ一週間を幾度も繰り返して」[n]
@@ -1404,6 +1442,7 @@ sf.yumeoizigokuend +=1
 [chara_mod name="shusuke" face="tuuzyou"]
 修介「まぁいいよ。過ぎたことだし」[n]
 一度殺されたっていうのに、過ぎたことで済ましてしまうのはあっさりしすぎていて、ちょっとおかしかった。[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……なんで、君はそこまでするの」[n]
 修介「俺は、君が繰り返したのと同じ分だけ、君の期待を裏切ってきたんだよ」[n]
 修介「どうして、見捨てないの」[n]
@@ -1414,25 +1453,29 @@ sf.yumeoizigokuend +=1
 カンナ「修介くんが、好きだから」[n]
 カンナ「修介くんの小説が、誰よりも好きなんだよ」[n]
 カンナ「修介くんにとっては、私一人なんかの肯定じゃ満足なんてできないんだろうし、この気持ちが重いって、受け取るのが辛いって、思うかもしれない」[n]
-カンナ「それでも、好きなんだよ。[n]好きになったら、止められないし、離れられないんだよ」[n]
+カンナ「それでも、好きなんだよ。好きになったら、止められないし、離れられないんだよ」[n]
 カンナ「修介くんだって、そうでしょ？」[n]
 カンナ「小説、書き続けたいんでしょ？」[n]
 カンナ「だから、一緒に何度も繰り返してくれたんでしょ？」[n]
 私一人だけでは、繰り返し続けることはできなかった。[n]
 修介くんも望んでいたからこそ、このループは成り立っている。[n]
-修介「……前、言ったよね。[n]好きは呪いだって」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
+修介「……前、言ったよね。好きは呪いだって」[n]
 修介「君にとっても、そうだったんだね」[n]
 カンナ「そうだよ」[n]
 カンナ「それぐらい、修介くんと、修介くんの書く小説が、好きなんだよ」[n]
 カンナ「……これでようやく、信じてもらえる？」[n]
 その好きという気持ちは、恋愛感情みたく胸が躍るような気持ちじゃなくて、振り払おうとしても貼りついて拭えない執着そのもので、まさに呪いで。[n]
 それでも好きは、好きなのだ。[n]
+[chara_mod name="shusuke" face="egao"]
 修介「……信じるよ」[n]
 修介「ここまでしてくれるファンの言うことを信じないやつは馬鹿だ」[n]
 カンナ「それじゃあ、もう“強制終了”したりしない？」[n]
-修介「しないよ。[n]……たった一人の読者からも逃げ出すようなやつは、作家になんてなれない」[n]
+修介「しないよ。……たった一人の読者からも逃げ出すようなやつは、作家になんてなれない」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「何度も繰り返して、俺もわかったよ」[n]
 修介「君なしでは、俺は良い作品を書くことなんてできない」[n]
+[chara_mod name="shusuke" face="egao"]
 修介「……なんて言ったら、君のことを小説のために利用してるみたいだけどね」[n]
 カンナ「それでいいよ」[n]
 カンナ「私は、そんな修介くんが好きなんだから」[n]
@@ -1443,11 +1486,13 @@ sf.yumeoizigokuend +=1
 カンナ「修介くんは、まともに生きることと小説を書くことの両立ができないから」[n]
 カンナ「だから、修介くんは働かないで、小説だけ書き続けて」[n]
 カンナ「……私に、修介くんを、飼わせてよ」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
 修介「……俺の自立は許さない、って？」[n]
 カンナ「そういうこと」[n]
 修介「過激なプロポーズだね」[n]
 修介くんの言う通り、これは、一生修介くんを縛り付ける提案だった。[n]
 私なしでは生きていけなくさせるような。[n]
+[chara_mod name="shusuke" face="urei"]
 修介「……君の言う通りにしたら、俺、ヒモになっちゃうよ」[n]
 修介「君に迷惑をかけることになる」[n]
 それでも心配することが私に迷惑をかけることなのが、変に生真面目な修介くんらしい。[n]
@@ -1455,10 +1500,15 @@ sf.yumeoizigokuend +=1
 カンナ「修介くんなら、できるでしょ」[n]
 修介「……本当に、君はいつも俺にプレッシャーをかけるね」[n]
 カンナ「やっぱり、重い？」[n]
-修介「いや。[n]臨むところだよ」[n]
-修介「ここまでのファンを持ったんだもの。[n]期待に応えるのは、当然のことだ」[n]
-修介「ううん。[n]……俺は、君の期待に応えたい」[n]
+[chara_mod name="shusuke" face="tuuzyou"]
+修介「いや。臨むところだよ」[n]
+修介「ここまでのファンを持ったんだもの。期待に応えるのは、当然のことだ」[n]
+修介「ううん。……俺は、君の期待に応えたい」[n]
 修介「応えさせてほしい」[n]
+[mask effect="fadeIn" time=500]
+[chara_hide_all time=10]
+[bg storage="手の甲にキス.png" time=10]
+[mask_off]
 ;CG　手の甲にキス
 そう言って修介くんは屈み、そっと私の手を取って唇を落とす。[n]
 誓いのキスというよりそれは、隷属の証だ。[n]
@@ -1486,7 +1536,8 @@ sf.yumeoizigokuend +=1
 だけど、修介くんが言いたくない言葉を口にしたということは、それほど重みのある言葉だということだ。[n]
 それならばあとは、信じるしかない。[n]
 修介「俺に騙されてほしい……最後まで」[n]
-そう言って修介くんはもう一度手の甲にキスを落としてから立ち上がり、今度は“あなた”の方を向く。[n]
+そう言って立ち上がり、今度は“あなた”の方を向く。[n]
+[bg storage="画面に手を合わせる.png" time=800]
 ;CG　画面に手を合わせる修介
 修介「……“君”も、ありがとう」[n]
 修介「最後まで、こんな俺を見届けてくれて」[n]

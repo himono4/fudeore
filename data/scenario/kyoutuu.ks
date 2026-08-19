@@ -73,7 +73,9 @@
 ;修介の部屋のドア
 この部屋こそが、彼の住まう鳥籠だった。[n]
 ;修介の部屋
+
 [bg storage="CG_パソコン.png"]
+[playbgm storage="ローファイな朝食.mp3" volume=40]
 扉を開けると、いつも通り部屋は薄暗かった。[n]
 部屋の内部にある唯一の光源は、卓上に置かれたノートパソコンだけ。[n]
 私の大好きな人は、青白い光に照らされながら、四角い画面とにらめっこしていた。[n]
@@ -143,6 +145,7 @@
 
 
 [mask effect="fadeIn" time=100]
+[fadeoutbgm time=1000]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
 [bg storage="コマンド画面背景.jpg"]
 [chara_move name="shusuke" left=0]
@@ -230,6 +233,7 @@
 [chara_hide name=shusuke time=10]
 [bg storage="CG_パソコン.png" time=10]
 [mask_off]
+[playbgm storage="ローファイな朝食.mp3" volume="40" ]
 小説を書いている修介くんはいつも、苦しそうな顔をしている。[n]
 自分の中にある昏い気持ちと戦って、その中にある綺麗なものを必死で探し当てようとしているんだと思う。[n]
 ずっと昔から修介くんの小説を読み続けている私には、それがわかる。[n]
@@ -373,6 +377,7 @@ f.stress += 0
 
 ;コマンド選択画面
 [mask effect="fadeIn" time=100]
+[fadeoutbgm time=1000]
 [freeimage layer=1]
 [freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
@@ -477,6 +482,7 @@ f.stress += 0
 [chara_hide name=shusuke time=10]
 [bg storage="廊下.png" time=10]
 [mask_off]
+[playbgm storage="ローファイな朝食.mp3" volume="40" ]
 ;三日目
 ;廊下
 今日も修介くんにご飯を運ぶ。[n]
@@ -649,6 +655,7 @@ f.stress += 0
 
 ;コマンド選択画面
 [mask effect="fadeIn" time=100]
+[fadeoutbgm time=1000]
 [freeimage layer=1]
 [freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
@@ -763,6 +770,7 @@ f.stress += 0
 
 そして、すぐ異変に気付いた。[n]
 [bg storage="うずくまる.png"]
+[playbgm storage="路地裏カセットテープ.mp3"]
 ;修介がうずくまるCG
 修介くんが、部屋の隅でガタガタ震えている。[n]
 カンナ「ねえ、修介くん、どうしたの」[n]
@@ -780,8 +788,8 @@ f.stress += 0
 事実だけを述べるなら、お母さんが自殺してから、修介くんはしばらく全く何もできなくなった。[n]大学に通うことはおろか、ベッドから起き上がることすら。[n]
 そんな修介くんをうちのお母さんが引き取って、療養のためという名目のもと、うちで暮らし始めた。[n]
 これが、修介くんがニートと呼ばれる存在になった経緯だった。[n]
-修介「……そんな憐れむような目で見るなよ。[n]大丈夫、俺はおかしくなってないから」[n]
-修介「……ちょっと思い出しただけだよ。[n]思い出して、怖くなっただけ」[n]
+修介「……そんな憐れむような目で見るなよ。大丈夫、俺はおかしくなってないから」[n]
+修介「……ちょっと思い出しただけだよ。思い出して、怖くなっただけ」[n]
 修介「俺は狂えないし、どんなに辛いことがあっても叫び出すことすらできないんだ」[n]
 修介「自分だけは正気でいなくちゃって、ずっと思いながら生きてきたから」[n]
 修介「だから俺は正気だし、今の状況は全部俺の責任」[n]
@@ -804,7 +812,7 @@ f.stress += 0
 ;「違うよ」[n]を選んだ場合
 *end1
 修介「違くないよ」[n]
-修介「何年前から見てきてると思ってるの。[n]わかるんだよ、ただ憧れてただけの昔とは違うって」[n]
+修介「何年前から見てきてると思ってるの。わかるんだよ、ただ憧れてただけの昔とは違うって」[n]
 カンナ「でも、幸せになってほしいのは、本当で」[n]
 修介「……それなら、もう俺とは関わらない方がいいよ」[n]
 修介「もし君が、幸せになった俺を見たいという動機で俺と接しているのであれば」[n]
@@ -823,6 +831,8 @@ f.stress += 0
 最後にそう言い残して、修介くんは扉を完全に閉ざした。[n]
 [mask effect="fadeIn"]
 [chara_hide name="shusuke"]
+[freeimage layer=1]
+[freeimage layer=2]
 [bg storage="黒.png"]
 [mask_off]
 ;暗転
@@ -832,6 +842,7 @@ f.stress += 0
 こうして、私たちの人生は、あの日のたった一言をきっかけにして、永遠にすれ違うことになった。[n]
 ;ＥＮＤ１
 [mask effect="fadeIn"]
+[fadeoutbgm time=1000]
 [clearfix name="role_button"]
 @layopt layer="message0" visible=false
 [mask_off]
@@ -873,6 +884,7 @@ sf.end1 += 1
 そう言って笑った修介くんの顔は、なんだか壊れてしまったみたいだった。[n]
 
 [mask effect="fadeIn" time=100]
+[fadeoutbgm time=1000]
 [freeimage layer=1]
 [freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
@@ -900,7 +912,7 @@ sf.end1 += 1
 [ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
 [ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
 [mask_off]
-[playbgm storage="夜の病室エレクトロ.mp3"]
+[playbgm storage="Lie.mp3"]
 *day4_command
 
 [button graphic="お出かけ.png"  target="*day4_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]

@@ -82,6 +82,7 @@
 
 *day5_A
 [bg storage="修介の部屋.png" time=500]
+[playbgm storage="Quiet_Days.mp3" volume="40"]
 ;進捗８５％未満の場合
 修介くんにご飯を運ぶため、部屋の扉を開ける。[n]
 今日の修介くんは珍しくパソコンとは向き合わず、ひたすらに部屋中を歩き回っていた。[n]
@@ -95,7 +96,7 @@
 
 *day5_A_1
 ;ストレス５０未満の場合
-しかし、怒鳴ってから、ふと我に返ったかのようにその場に立ち尽くす。
+しかし、怒鳴ってから、ふと我に返ったかのようにその場に立ち尽くす。[n]
 [chara_mod name="shusuke" face="urei"]
 修介「……本当は、もうやめた方がいいんだろうな」[n]
 修介「結局俺はこの程度で折れるほどの才能でしかないんだよ」[n]
@@ -351,6 +352,7 @@ f.stress += 0
 *day5_B
 ;進捗８５％以上の場合
 [bg storage="修介の部屋.png"]
+[playbgm storage="Quiet_Days.mp3" volume="40"]
 修介くんにご飯を運ぶため、部屋の扉を開ける。[n]
 修介くんは今日も変わらず、パソコンと必死に向かい合っている。[n]
 カンナ「修介くん、ご飯持ってきたよ。食べよう？」[n]
@@ -369,8 +371,8 @@ f.stress += 0
 カンナ「ファンですから、腐っても」[n]
 そんなことを話しながら、トレーの上に乗っかった雑炊を二人で食べる。[n]
 カンナ「修介くん、今日はちゃんと寝れた？」[n]
-[jump target="*day5_B_1_1" cond="f.stress >= 80"]
-[jump target="*day5_B_1_2" cond="f.stress < 80"]
+[jump target="*day5_B_1_1" cond="f.stress >= 70"]
+[jump target="*day5_B_1_2" cond="f.stress < 70"]
 *day5_B_1_1
 ;ストレス８０以上の場合
 修介「あんまり」[n]
@@ -537,9 +539,11 @@ f.stress += 5
 
 *day5_B_2
 ;好感度５０未満の場合
+
 修介「……」[n]
-声を掛けても、修介くんは画面に釘付けになっている。
+声を掛けても、修介くんは画面に釘付けになっている。[n]
 カンナ「修介くん、ご飯だよ。卵雑炊、食べられそう？」[n]
+[chara_show name="shusuke" face="mesorasi" top=20 left=230]
 修介「……あとで食べとくから。置いといて」[n]
 カンナ「でも、冷めちゃうよ」[n]
 修介「別に……」[n]
@@ -658,7 +662,7 @@ f.stress += 5
 [ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
 [ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
 [mask_off]
-[playbgm storage="夜の病室エレクトロ.mp3"]
+[playbgm storage="Lie.mp3"]
 *day5_command
 
 [button graphic="お出かけ.png"  target="*day5_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
@@ -754,10 +758,11 @@ f.stress += 5
 
 *day6_A
 [bg storage="修介の部屋.png" time=800]
+[playbgm storage="Quiet_Days.mp3" volume="40"]
 ;六日目
 ;進捗９０％未満の場合
-いつも通り修介くんの部屋の扉を開ける。
-修介くんはパソコンも開かず、ただ、部屋の隅にうずくまり、何かをぶつぶつと呟いていた。
+いつも通り修介くんの部屋の扉を開ける。[n]
+修介くんはパソコンも開かず、ただ、部屋の隅にうずくまり、何かをぶつぶつと呟いていた。[n]
 カンナ「……修介くん？」[n]
 声を掛けると、修介くんは顔を上げる。[n]
 [chara_show name="shusuke" face="tuuzyou" top=20 left=230]
@@ -1049,6 +1054,7 @@ f.stress -= 5
 
 *day6_B
 [bg storage="廊下.png" time=800]
+[playbgm storage="Quiet_Days.mp3" volume="40"]
 ;進捗９０％以上の場合
 今日も修介くんにご飯を運ぶ。[n]
 [bg storage="CG_パソコン.png" time=800]
@@ -1172,8 +1178,8 @@ f.stress -= 5
 言いながら、修介くんは私の作ったスープを口にする。[n]
 修介「……もし君が悪意を持っていたら、食事に毒を入れることだって可能だよね」[n]
 カンナ「疑われてる？」[n]
-[jump target="*day6_B_2_1" cond="f.stress >= 80"]
-[jump target="*day6_B_2_2" cond="f.stress < 80"]
+[jump target="*day6_B_2_1" cond="f.stress >= 75"]
+[jump target="*day6_B_2_2" cond="f.stress < 75"]
 
 *day6_B_2_1
 ;ストレス８０以上の場合
@@ -1373,6 +1379,7 @@ f.stress += 5
 
 *day6_command_gamen
 [mask effect="fadeIn" time=100]
+[fadeoutbgm time=1000]
 [freeimage layer=1]
 [freeimage layer=2]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
@@ -1404,7 +1411,7 @@ f.stress += 5
 [ptext layer=2 text="&f.stress" y=170 x=1120 size=23]
 [ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
 [mask_off]
-[playbgm storage="夜の病室エレクトロ.mp3"]
+[playbgm storage="Lie.mp3"]
 *day6_command
 
 [button graphic="お出かけ.png"  target="*day6_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
@@ -1502,7 +1509,7 @@ f.stress += 5
 [jump  storage="end.ks" target="*stressend" cond="f.stress === 100"]
 [jump storage="end.ks" target="*kenjouend" cond="f.stress === 0"]
 [jump storage="end.ks" target="*nareaiend" cond="f.sintyoku < 100 && f.stress < 50 "]
-[jump storage="end.ks" target="*ribetuend" cond="f.sintyoku < 100 && f.koukando < 60 && f.stress <= 50 "]
+[jump storage="end.ks" target="*ribetuend" cond="f.sintyoku < 100 && f.koukando < 60 && f.stress >= 50 "]
 [jump storage="end.ks" target="*kyouisonend" cond="f.sintyoku < 100 && f.stress >= 50 && f.koukando >= 60 "]
 [jump storage="end.ks" target="*ningyouend" cond="f.sintyoku === 100 && f.koukando < 50 "]
 [jump storage="end.ks" target="*hakusiend" cond="f.sintyoku === 100 && f.stress >= 80 && f.koukando >= 50 "]
