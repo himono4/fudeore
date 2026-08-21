@@ -58,16 +58,16 @@
 	tf.btn_path_on  = tf.img_path + 'c_set.png';
 
 	// ボタン画像の幅と高さ
-	tf.btn_w  = 46; // 幅
-	tf.btn_h = 46; // 高さ
+	tf.btn_w  = 55; // 幅
+	tf.btn_h = 55; // 高さ
 
 	// ボタンを表示する座標（tf.config_y_ch[0]とtf.config_y_auto[0]は未使用）
 	tf.config_x       = [1040, 400,　454, 508, 562, 616, 670, 724, 778, 832, 886]; // X座標（共通）
 
-	tf.config_y_bgm   = 190; // BGMのY座標
-	tf.config_y_se    = 250; // SEのY座標
-	tf.config_y_ch    = 325; // テキスト速度のY座標
-	tf.config_y_auto  = 385; // オート速度のY座標
+	tf.config_y_bgm   = 187; // BGMのY座標
+	tf.config_y_se    = 247; // SEのY座標
+	tf.config_y_ch    = 322; // テキスト速度のY座標
+	tf.config_y_auto  = 382; // オート速度のY座標
 
 	// 上記の配列変数の添字を格納しておく変数。選択した音量や速度に対応。
 	tf.config_num_bgm;  // BGM

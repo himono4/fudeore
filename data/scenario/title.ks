@@ -7,13 +7,13 @@
 [playbgm storage="Silent_Night-MB01-mp3/Silent_Night-MB01-1(Reverb-Slow).mp3"]
 *start 
 ;スタート
-[glink color="btn_25_white" x="150" y="270" width="400" size="30" text="最初から" target="*gamestart"]
+[glink color="btn_07_black" x="30" y="590" width="300" size="30" text="最初から" target="*gamestart"]
 ;続きから
-[glink color="btn_25_white" x="150" y="370" width="400" size="30" text="続きから" role="load"]
+[glink color="btn_07_black" x="340" y="590" width="300" size="30" text="続きから" role="load"]
 ;cgモード
-[glink color="btn_25_white" x="150" y="470" width="400" size="30" text="CGモード" storage="cg.ks"]
+[glink color="btn_07_black" x="650" y="590" width="300" size="30" text="エンドリスト" storage="endlist.ks"]
 ;コンフィグ
-[glink color="btn_25_white" x="150" y="570" width="400" size="30" text="設定" storage="config.ks" role="sleepgame"]
+[glink color="btn_07_black" x="960" y="590" width="300" size="30" text="設定" storage="config.ks" role="sleepgame"]
 [s]
 
 *gamestart

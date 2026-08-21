@@ -107,6 +107,15 @@ if (typeof clear_flag === "undefined"){
 [eval exp="sf.yumeoizigokuend=1"]
 [endif]
 
+[if exp="sf.trueend==null"]
+[eval exp="sf.trueend=1"]
+[endif]
+
+[if exp="sf.syukai == null"]
+[eval exp="sf.syukai = 1"]
+[endif]
+
+
 ;タイトル画面へ移動
 @jump storage="title.ks"
 

@@ -63,7 +63,15 @@
 [eval exp="f.amayakasuA = 0"]
 [eval exp="f.hanasiA = 0"]
 
+[jump target="*day1_skip" cond="sf.syukai >= 2"]
+[jump target="*day1" cond="sf.syukai === 1"]
 
+*day1_skip
+プロローグをスキップしますか？[n]
+[glink text="はい" color="btn_07_black" width=500 x=400 y=150 target="*day1_command_gamen"]
+[glink text="いいえ" color="btn_07_black" width=500 x=400 y=250 target="*day1"]
+[s]
+*day1
 綺麗なものが好き。[n]
 綺麗なものがボロボロに壊れてしまう姿は、もっと好き。[n]
 そこに理屈なんてなくて、ただただ、私はそれが大好きで、どうしても見たいっていう、それだけ。[n]
@@ -143,7 +151,7 @@
 修介「はいはい」[n]
 適当な返事には、隠し切れない優しさが滲み出ていた。[n]
 
-
+*day1_command_gamen
 [mask effect="fadeIn" time=100]
 [fadeoutbgm time=1000]
 [position layer="message0" frame="frame.png" left=0 top=550 width=1280 height=200  page=fore visible=false]
@@ -173,13 +181,26 @@
 [ptext layer=2 text="&'Day'+f.day" y=55 x=100 size=50 edge="2px #1e1e1e" ]
 [mask_off]
 [playbgm storage="夜の病室エレクトロ.mp3"]
-*day1_command
 
+*command_setumei
+ここはコマンド選択画面です。[n]
+コマンドを選択して、修介くんの[mark color="#798a94" size=20]好感度[endmark]と[mark color="#798a94" size=20]ストレス[endmark]を調整しましょう。[n]
+好感度もストレスは、低すぎても高すぎても[mark color="#798a94" size=20]進捗[endmark]に影響を及ぼします。[n]
+ちょうどいい範囲に数値を収めると、進捗が伸びます。[n]
+また、お出かけコマンドや共通イベントに出現する[mark color="#798a94" size=20]三択の選択肢[endmark]はストレスや好感度に関わるので慎重に選びましょう。[n]
+以上で説明を終わります。[n]
+もう一度説明を聞きますか？[n]
+[glink color="btn_07_black" text="はい"  target="*command_setumei" width=300  x=50 y=300 ]
+[glink color="btn_07_black" text="いいえ" target="*day1_command" width=300 x=50 y=400]
+[s]
+
+*day1_command
 [button graphic="お出かけ.png"  target="*day1_date" x=1000 y=250  width=192 height=120 enterimg="お出かけ2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="お出かけ.png"  ]
 [button graphic="甘やかす.png"  target="*day1_amayakasu" x=800 y=400 width=192 height=120 enterimg="甘やかす2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="甘やかす.png" ]
 [button graphic="話を聞く.png"  target="*day1_hanasi" x=800 y=250 width=192 height=120 enterimg="話を聞く2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="話を聞く.png" ]
 [button graphic="進捗チェック.png"   target="*day1_sintyoku" x=1000 y=400 width=192 height=120 enterimg="進捗チェック2.png" clickse="決定ボタンを押す7.mp3" enterse="カーソル移動12.mp3" clickimg="進捗チェック.png" ]
 [s]
+
 
 *day1_date
 修介くんを外に連れ出します　（ストレス? 好感度?）[n]
@@ -212,8 +233,25 @@
 *day2
 [fadeoutbgm time=1000]
 [mask effect="fadeIn" ]
+
 [freeimage layer=1]
 [freeimage layer=2]
+[chara_hide name=shusuke time=10]
+[clearfix name="role_button"]
+@layopt layer="message0" visible=false
+[bg storage="day2.png" time=100]
+[mask_off]
+[wait time=2000]
+
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[button name="role_button" role="skip" graphic="button/skip.png" x=780 y=690]
+[button name="role_button" role="save" graphic="button/save.png" x=590 y=690]
+[button name="role_button" role="load" graphic="button/load.png" x=685 y=690]
+[button name="role_button" role="backlog" graphic="button/log.png" x=970 y=690]
+[button name="role_button" role="auto" graphic="button/auto.png" x=875 y=690]
+[button name="role_button" role="title" graphic="button/title.png" x=1160 y=690]
+[button name="role_button" role="sleepgame" storage="config.ks" graphic="button/sleep.png" x=1065 y=690]
 
 [layopt layer=1 visible=true]
 [layopt layer=2 visible=true]
@@ -230,7 +268,7 @@
 [ptext layer=2 text="&f.sintyoku" y=55 x=260 size=17 name="sintyoku_number"]
 [ptext layer=2 text="&f.koukando" y=90 x=260 size=17 name="koukando_number"]
 [ptext layer=2 text="&f.stress" y=125 x=260 size=17 name="stress_number"]
-[chara_hide name=shusuke time=10]
+
 [bg storage="CG_パソコン.png" time=10]
 [mask_off]
 [playbgm storage="ローファイな朝食.mp3" volume="40" ]
@@ -461,9 +499,27 @@ f.stress += 0
 
 *day3
 [mask effect="fadeIn" ]
+[fadeoutbgm time=100]
 [freeimage layer=1]
 [freeimage layer=2]
-[fadeoutbgm time=100]
+[chara_hide name=shusuke time=10]
+[clearfix name="role_button"]
+@layopt layer="message0" visible=false
+[bg storage="day3.png" time=100]
+[mask_off]
+[wait time=2000]
+
+
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[button name="role_button" role="skip" graphic="button/skip.png" x=780 y=690]
+[button name="role_button" role="save" graphic="button/save.png" x=590 y=690]
+[button name="role_button" role="load" graphic="button/load.png" x=685 y=690]
+[button name="role_button" role="backlog" graphic="button/log.png" x=970 y=690]
+[button name="role_button" role="auto" graphic="button/auto.png" x=875 y=690]
+[button name="role_button" role="title" graphic="button/title.png" x=1160 y=690]
+[button name="role_button" role="sleepgame" storage="config.ks" graphic="button/sleep.png" x=1065 y=690]
+
 [layopt layer=1 visible=true]
 [layopt layer=2 visible=true]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
@@ -744,6 +800,22 @@ f.stress += 0
 [freeimage layer=1]
 [freeimage layer=2]
 [fadeoutbgm time=100]
+[chara_hide name=shusuke time=10]
+[clearfix name="role_button"]
+@layopt layer="message0" visible=false
+[bg storage="day4.png" time=100]
+[mask_off]
+[wait time=2000]
+
+[mask effect="fadeIn" time=100]
+[position layer="message0" frame="frame.png" left=0 top=480 width=1280 height=240 page=fore visible=true]
+[button name="role_button" role="skip" graphic="button/skip.png" x=780 y=690]
+[button name="role_button" role="save" graphic="button/save.png" x=590 y=690]
+[button name="role_button" role="load" graphic="button/load.png" x=685 y=690]
+[button name="role_button" role="backlog" graphic="button/log.png" x=970 y=690]
+[button name="role_button" role="auto" graphic="button/auto.png" x=875 y=690]
+[button name="role_button" role="title" graphic="button/title.png" x=1160 y=690]
+[button name="role_button" role="sleepgame" storage="config.ks" graphic="button/sleep.png" x=1065 y=690]
 [layopt layer=1 visible=true]
 [layopt layer=2 visible=true]
 [image storage="../image/b.png" x=30 y=20 width=280 height=170 layer=1]
@@ -846,9 +918,12 @@ f.stress += 0
 [clearfix name="role_button"]
 @layopt layer="message0" visible=false
 [mask_off]
+[layopt layer=1 visible="true"]
+
 [wait time=2000]
 [iscript]
 sf.end1 += 1
+sf.syukai +=1
 [endscript]
 [jump storage="title.ks"]
 

@@ -78,6 +78,7 @@
 修介「……いいよ」[n]
 修介「……もう、疲れたんだよ、俺は」[n]
 ;画面揺れ
+[playse storage="軽いパンチ1.mp3"]
 [quake count=1 time=300 hmax=20]
 衝動の赴くまま、修介くんを殴った。[n]
 カンナ「修介くんはそんなこと、言わない」[n]
@@ -109,6 +110,7 @@
 カンナ「……！」[n]
 この感情を、怒りと呼ぶのか、悲しみと呼ぶのかはわからない。[n]
 ただわかっているのは、私が修介くんの上に馬乗りになって、その美しい顔を殴りつけていたということだけ。[n]
+[playse storage="軽いパンチ1.mp3"]
 [bg storage="仰向け2.png" time=800]
 カンナ「なんで諦めちゃうの！」[n]
 カンナ「小説書くの、辞められないんじゃなかったの？」[n]
@@ -146,6 +148,7 @@
 [wait time=2000]
 [iscript]
 sf.bouryokuend += 1
+sf.syukai +=1
 [endscript]
 [fadeoutbgm time=1000]
 [jump storage="title.ks"]
@@ -378,6 +381,7 @@ sf.bouryokuend += 1
 [wait time=2000]
 [iscript]
 sf.dateend_1 +=1
+sf.syukai += 1
 [endscript]
 [jump storage="title.ks"]
 
@@ -440,6 +444,7 @@ sf.dateend_1 +=1
 [wait time=2000]
 [iscript]
 sf.dateend_2 +=1
+sf.syukai += 1
 [endscript]
 [jump storage="title.ks"]
 
@@ -550,6 +555,7 @@ sf.dateend_2 +=1
 [wait time=2000]
 [iscript]
 sf.josouend +=1
+sf.syukai +=1 
 [endscript]
 [jump storage="title.ks"]
 
@@ -654,6 +660,7 @@ sf.josouend +=1
 ;洗脳エンド
 [iscript]
 sf.amayakasuend +=1
+sf.syukai += 1
 [endscript]
 [fadeoutbgm time=1000]
 [mask effect="fadeIn"]
@@ -746,6 +753,7 @@ sf.amayakasuend +=1
 ;自殺エンド
 [iscript]
 sf.stressend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [bg storage="黒.png"]
@@ -835,6 +843,7 @@ sf.stressend +=1
 ;健常者になれないエンド
 [iscript]
 sf.kenjouend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [fadeoutbgm time=1000]
@@ -933,6 +942,7 @@ sf.kenjouend +=1
 ;離別エンド
 [iscript]
 sf.ribetuend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [fadeoutbgm time=1000]
@@ -1007,7 +1017,7 @@ sf.ribetuend +=1
 ;画面暗転
 それから修介くんは無事バイトに受かり、最低限働きながら就活を始めた。[n]
 定職に就いた方が安定するから、という笑っちゃうぐらい堅実なことを口にしながら。[n]
-それと同時に、修介くんはネット上に小説を投稿し始めた。[n]ペンネームを変えてないから、検索すればすぐに見つかったのだ。[n]
+それと同時に、修介くんはネット上に小説を投稿し始めた。[n]新人賞を出すときに使っていた「西川修二」というペンネームのまま活動していたから、検索すればすぐに見つかったのだ。[n]
 修介くんは、最初の方は面白いものを書いていた。[n]
 しかし、途中で小説仲間とネット上で交流するようになってから、どんどんつまらないものを書くようになった。[n]
 就活になんとか成功し、生活が安定するようになったら、ますますつまらなさに拍車がかかるようになった。[n]
@@ -1021,6 +1031,7 @@ sf.ribetuend +=1
 ;馴れ合いエンド
 [iscript]
 sf.nareaiend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [fadeoutbgm time=1000]
@@ -1122,6 +1133,7 @@ sf.nareaiend +=1
 ;共依存エンド
 [iscript]
 sf.kyouisonend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [fadeoutbgm time=1000]
@@ -1186,6 +1198,7 @@ sf.kyouisonend +=1
 ;人形エンド
 [iscript]
 sf.ningyouend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [fadeoutbgm time=1000]
@@ -1267,6 +1280,7 @@ sf.ningyouend +=1
 ;白紙エンド
 [iscript]
 sf.hakusiend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [bg storage="黒.png"]
@@ -1345,6 +1359,7 @@ sf.hakusiend +=1
 ;背景：黒
 それから修介くんは言った通り、無理のない範囲でバイトを始めつつ、新しく小説を書き始めた。[n]
 新人賞に出した小説も読ませてもらったけど、文句なしに面白かった。[n]
+『蒼空の国』というタイトルの、青春小説。[n]
 クラスの複雑な人間関係の中で傷ついたり、悩んだりしながら生きる等身大の高校生の姿が鮮明に描かれていて、繊細な感情表現には修介くんらしさが存分に現れていた。[n]
 まさに、私の見たかった修介くんの小説という感じだ。[n]
 なんて感想を修介くんに伝えたら、また大げさだなんて言って素直に受け取ってはくれなかったけど。[n]
@@ -1398,6 +1413,12 @@ sf.hakusiend +=1
 [chara_hide_all]
 [bg storage="画面割る.png" time=800]
 修介「……さよなら」[n]
+[mask effect="fadeIn" time=100]
+[clearfix name="role_button"]
+[freeimage layer=1]
+[freeimage layer=2]
+@layopt layer="message0" visible=false
+[mask_off]
 [playse storage="ガラスにひびが入る.mp3"]
 [bg storage="画面割れる.jpg" time=100]
 [wait time=500]
@@ -1405,13 +1426,10 @@ sf.hakusiend +=1
 ;落選エンド
 [iscript]
 sf.yumeoizigokuend +=1
+sf.syukai += 1
 [endscript]
 [mask effect="fadeIn"]
 [bg storage="黒.png"]
-[clearfix name="role_button"]
-[freeimage layer=1]
-[freeimage layer=2]
-@layopt layer="message0" visible=false
 [mask_off]
 [wait time=2000]
 [jump storage="title.ks"]
@@ -1548,6 +1566,18 @@ sf.yumeoizigokuend +=1
 修介「だけど、君がどう思っていても、俺は君に感謝を伝えたい」[n]
 修介「どうしようもない俺を見捨てないでくれて、ありがとう」[n]
 修介「……愛しているよ」[n]
+[iscript]
+sf.trueend += 1
+sf.syukai += 1
+[endscript]
+[mask effect="fadeIn"]
+[bg storage="黒.png"]
+[clearfix name="role_button"]
+
+@layopt layer="message0" visible=false
+[mask_off]
+[wait time=2000]
+[jump storage="title.ks"]
 ;エンドロール
 ;最後に授賞式で笑っている修介のCG
 ;トゥルーエンド
